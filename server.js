@@ -33,7 +33,7 @@ const incrementeScore = (io) => {
   //   current_reponse: socket.data.current_reponse
   // }
   room.players.forEach((player) => {
-    if(player.current_reponse == questions[0].responseId) {
+    if(player.current_reponse == questions[0].reponseId) {
       player.score += 1
     }
   })
@@ -48,9 +48,9 @@ const getQuestions = async (serie_id) => {
   return questions
 }
 
-const displayResponse = (io) => {
+const displayReponse = (io) => {
   let question = questions[0]
-  let reponse = question.reponses[question.responseId].text
+  let reponse = question.reponses[question.reponseId].text
 
   incrementeScore(io)
 
@@ -62,11 +62,9 @@ const displayResponse = (io) => {
 const nextQuestion = (io) => {
   questions.shift()
   
-  console.log("next question", questions)
-
   if(questions.length <= 0) {
     // GAME FINISH
-    
+
     room.players.sort((a, b) => a.score - b.score ) // score context
 
     io.to(room.director).emit("director:game:finish", room.players)
@@ -80,6 +78,7 @@ const nextQuestion = (io) => {
   io.to(room.director).emit("director:room:update", room)
   io.to(room.director).emit("director:game:question:changed", current_question)
   io.to(room.uid).emit("player:game:question:changed", current_question.reponses)
+  setTimeout(displayReponse, QUESTION_TIME_DISPLAY, io)
 }
 
 app.prepare().then(() => {
@@ -94,7 +93,6 @@ app.prepare().then(() => {
     // WHEN DIRECTOR ASK TO JOIN A ROOM
     socket.on("director:join", ({room_uid, serie_id}, callback) => {
       socket.join(`${room_uid}`)
-      console.log(`director join: '${room_uid}'`)
 
       room = {
         uid: room_uid,
@@ -105,18 +103,19 @@ app.prepare().then(() => {
       }
 
       callback(room)
-      console.log(room)
+      console.log("room create: ", room)
     })
 
     socket.on("director:game:start", async () => {
       // load questions in cache
       questions = await getQuestions(room.serie_id)
-      console.log(questions)
       shuffleArray(questions)
-      
+
       // get next questions
       room.current_question_id = questions[0].id
       var current_question = questions[0]
+
+      console.log("Question: ", current_question)
 
       // send next question to director
       io.to(room.director).emit("director:room:update", room)
@@ -125,7 +124,7 @@ app.prepare().then(() => {
       // send next responses to players
       io.to(room.uid).emit("player:game:question:changed", current_question.reponses)
 
-      setTimeout(displayResponse, QUESTION_TIME_DISPLAY, io)
+      setTimeout(displayReponse, QUESTION_TIME_DISPLAY, io)
     })
 
     
@@ -145,6 +144,7 @@ app.prepare().then(() => {
       }
 
       socket.join(room_uid)
+
       let playerData = {
         id: socket.id,
         username: socket.data.username,
@@ -171,11 +171,11 @@ app.prepare().then(() => {
         current_reponse: reponse_id
       }
       io.to(room.director).emit("director:room:update", room)
-      console.log("player:reponse", { reponse_id })
+      console.log("player:reponse: ", socket.data.username, socket.data.current_question_id)
     })
 
     // ## DB CALLS ##
-    socket.on("get:serie:title", async ({ room_uid }, callback) => {
+    socket.on("get:serie:title", async ({}, callback) => {
       const db = await getdb()
       const title = db.series.find((serie) => serie.id == room.serie_id).title
       callback(title)

@@ -6,7 +6,7 @@ export type Question = {
     id: number,
     text: string,
     reponses: Reponse[],
-    responseId: number
+    reponseId: number
 }
 
 export type Serie = {
@@ -42,7 +42,7 @@ export const db = {
                 { text: "Donkey Kong" },
                 { text: "Super Mario 64" }
             ],
-            responseId: 2
+            reponseId: 2
         },
         {
             id: 1,
@@ -53,7 +53,7 @@ export const db = {
                 { text: "Princesse Rosalina" },
                 { text: "Princesse Pauline" }
             ],
-            responseId: 0
+            reponseId: 0
         },
         {
             id: 2,
@@ -64,7 +64,7 @@ export const db = {
                 { text: "Wario" },
                 { text: "Donkey Kong" }
             ],
-            responseId: 2
+            reponseId: 2
         },
         {
             id: 3,
@@ -75,7 +75,7 @@ export const db = {
                 { text: "Royaume des Sables" },
                 { text: "Royaume des Forêts" }
             ],
-            responseId: 1
+            reponseId: 1
         },
         {
             id: 4,
@@ -86,7 +86,7 @@ export const db = {
                 { text: "Jack Black" },
                 { text: "Seth Rogen" }
             ],
-            responseId: 0
+            reponseId: 0
         },
         {
             id: 5,
@@ -97,7 +97,7 @@ export const db = {
                 { text: "Super Smash Bros" },
                 { text: "Mario Party" }
             ],
-            responseId: 1
+            reponseId: 1
         },
         {
             id: 6,
@@ -108,7 +108,7 @@ export const db = {
                 { text: "Toad" },
                 { text: "Bowser Jr." }
             ],
-            responseId: 1
+            reponseId: 1
         },
         {
             id: 7,
@@ -119,7 +119,7 @@ export const db = {
                 { text: "King Boo" },
                 { text: "Donkey Kong" }
             ],
-            responseId: 0
+            reponseId: 0
         },
         {
             id: 8,
@@ -130,7 +130,7 @@ export const db = {
                 { text: "Bowser" },
                 { text: "Wario" }
             ],
-            responseId: 2
+            reponseId: 2
         },
         {
             id: 9,
@@ -141,7 +141,7 @@ export const db = {
                 { text: "Monde 4 : Géant" },
                 { text: "Monde 5 : Ciel" }
             ],
-            responseId: 1
+            reponseId: 1
         }
     ]
 }

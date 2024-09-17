@@ -1,13 +1,16 @@
 "use client"
 
 import { socket } from "@/socket";
-import { useSearchParams, notFound, useRouter } from "next/navigation";
+import { useSearchParams, notFound } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { Box, Button, Heading } from "@chakra-ui/react";
-import PlayerList from "@/components/PlayerList";
+import { Box, Spinner } from "@chakra-ui/react";
 import { Player, Room } from "@/types/socket.type";
-import { Question, Reponse, Serie } from "@/db";
-import ScoreBoard from "@/components/ScoreBoard";
+import { Question, Serie } from "@/db";
+import DirectorLobbyView from "@/views/director/DirectorLobbyView";
+import DirectorQuestionView from "@/views/director/DirectorQuestionView";
+import DirectorFinishView from "@/views/director/DirectorFinishView";
+import DirectorReponseView from "@/views/director/DirectorReponseView";
+import CircleLoader from "@/components/CicleLoader";
 
 enum ViewMode {
   LOBBY,
@@ -21,8 +24,6 @@ export default function DirectorView() {
   const searchParams = useSearchParams()
   const room_uid: string | null = searchParams.get('roomUID')
   const serie_id: string | null = searchParams.get('serieId')
-
-  const router = useRouter()
 
   const [view, setView] = useState<ViewMode>(ViewMode.LOBBY)
   const [serie, setSerie] = useState<Serie | undefined>(undefined)
@@ -97,77 +98,34 @@ export default function DirectorView() {
     }
   }, [])
 
-  // BUTTON HANDLERS
-  const handleStartGame = () => {
-    socket.emit("director:game:start")
-  }
-
-  const handleReturnToSeries = () => {
-    router.push(`${process.env.NEXT_PUBLIC_DOMAIN}/admin/series`)
-  }
-
-  if(serie == undefined || room == null) { return <Box>Loading DATA</Box> }
+  if(serie == undefined || room == null) { return <CircleLoader /> }
 
   if(view == ViewMode.LOBBY) {
-    return (
-      <Box display="flex" flexDirection="column" alignItems="center">
-        <Heading as="h3">Scan le QR Code ou rend toi à cette url:</Heading>
-        <p>{`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`}</p>
-
-        <PlayerList room={room} />
-        
-        <Button onClick={() => handleStartGame()} margin="10px 0" colorScheme="green">Start Game</Button>
-      </Box>
-    )
+    return <DirectorLobbyView
+      socket={socket}
+      room={room} 
+    />
   }
 
   if(view == ViewMode.QUESTION) {
-    return (
-      <Box>
-        <Box>
-          <PlayerList room={room} />
-        </Box>
-        <Box display="flex" flexDirection="column" alignItems="center">
-          {
-            currentQuestion && (
-              <>
-                <Heading as="h3">{currentQuestion.text}</Heading>
-                  <Box>
-                  {
-                    currentQuestion.reponses.map((response: Reponse, index) => {
-                      return <Button key={index}>{response.text}</Button>
-                    })
-                  }   
-                  </Box>
-              </>
-            )
-          }
-        </Box>
-      </Box>
-    )
+    return <DirectorQuestionView
+      room={room}
+      currentQuestion={currentQuestion} 
+    />
   }
 
   if(view == ViewMode.RESPONSE) {
-    return (
-      <Box>
-        <PlayerList room={room} />
-        <Box display="flex" flexDirection="column" alignItems="center">
-          <Heading as="h3">Reponse</Heading>
-          <Heading as="h4">{currentQuestion && currentQuestion.reponses[currentQuestion.responseId].text}</Heading>
-        </Box>
-      </Box>
-    )
+    return <DirectorReponseView
+      room={room}
+      currentQuestion={currentQuestion} 
+    /> 
   }
 
   if(view == ViewMode.FINISH) {
-    return (
-      <Box display="flex" flexDirection="column" flex="1">
-        <ScoreBoard room={room} />
-        <Button colorScheme="green" onClick={() => handleReturnToSeries()}>Retour aux series</Button>
-      </Box>
-    )
+    return <DirectorFinishView
+      room={room} 
+    />
   }
 
-
-  return <Box>Loading PAGE</Box>
+  return <CircleLoader />
 }
