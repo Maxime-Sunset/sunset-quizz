@@ -3,6 +3,7 @@ import QRCodeGenerator from "@/components/QRCodeGenerator";
 import { Room } from "@/types/socket.type";
 import { Box, Button, Heading } from "@chakra-ui/react";
 import { Socket } from "socket.io-client";
+import { SiGooglelens } from "react-icons/si";
 
 interface DirectorLobbyViewProps {
     socket: Socket
@@ -15,16 +16,17 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
     }
 
     return (
-        <Box display="flex" flexDirection="column" alignItems="center">
-          <Heading as="h3">Scan le QR Code ou rend toi à cette url:</Heading>
+      <Box display="flex">
+        <PlayerList room={room} />
+        <Box display="flex" flex="1" flexDirection="column" justifyContent="center" gap="1rem" alignItems="center" h="100vh">
+          <Heading as="h3">Scan le QR Code ou rend toi à cette url</Heading>
           {/* <QRCodeGenerator href={`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`} /> */}
-          <QRCodeGenerator href={`http://192.168.1.96:3000/player/${room.uid}`} />
-          <Box>{`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`}</Box>
-          
-          <br />
-          <PlayerList room={room} />
-          
-          <Button onClick={() => handleStartGame()} margin="10px 0" colorScheme="green">Start Game</Button>
+          <QRCodeGenerator href={`${process.env.NEXT_PUBLIC_CLIENT_LOCAL_DOMAIN}/player/${room.uid}`} />
+          <Box textAlign="center" bg="grey" border="solid 1px black">{`Recherché le logo`}<Box display="flex" justifyContent="center"><SiGooglelens size="60px" /></Box>{`sur votre mobile pour scanné le QrCode et accedé à au jeux.`}</Box>
+          <Box>{`${process.env.NEXT_PUBLIC_CLIENT_LOCAL_DOMAIN}/player/${room.uid}`}</Box>
+          <Button onClick={() => handleStartGame()} colorScheme="green">Start Game</Button>
         </Box>
+      </Box>
+
       )
 }

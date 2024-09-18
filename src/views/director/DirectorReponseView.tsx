@@ -1,7 +1,7 @@
 import PlayerList from "@/components/PlayerList";
 import { Question } from "@/db";
 import { Room } from "@/types/socket.type";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 interface DirectorReponseViewProps {
     room: Room,
@@ -13,7 +13,7 @@ export default function DirectorReponseView({ room, currentQuestion}: DirectorRe
           <PlayerList room={room} />
           <Box display="flex" flexDirection="column" alignItems="center">
             <Heading as="h3">Reponse</Heading>
-            <Heading as="h4">{currentQuestion && currentQuestion.reponses[currentQuestion.reponseId].text}</Heading>
+            <Text>{currentQuestion && currentQuestion.reponses[currentQuestion.reponseId].text}</Text>
           </Box>
         </Box>
       )

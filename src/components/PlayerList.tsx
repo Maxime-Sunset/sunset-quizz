@@ -3,7 +3,7 @@ import { Box, Heading, List, ListItem } from "@chakra-ui/react";
 
 export default function PlayerList({room}: any) {
     return (
-        <Box bg="grey" padding="10px">
+        <Box display="flex" flexDirection="column" justifyContent="start" alignItems="center" bg="grey" padding="10px" border="solid 1px black">
             <Heading as="h3">PLAYERS</Heading>
             <List>
                 {

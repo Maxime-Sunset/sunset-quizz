@@ -3,7 +3,6 @@
 import { socket } from "@/socket";
 import { useSearchParams, notFound } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { Box, Spinner } from "@chakra-ui/react";
 import { Player, Room } from "@/types/socket.type";
 import { Question, Serie } from "@/db";
 import DirectorLobbyView from "@/views/director/DirectorLobbyView";
@@ -30,12 +29,13 @@ export default function DirectorView() {
   const [room, setRoom] = useState<any>(null)
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
 
-  const fetchSerie = useCallback(async(_serie_id?: number) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/series/questions${_serie_id ? "?serie_id="+_serie_id : ""}`)
-    .then((res) => res.json())
+  const fetchSerie = useCallback(async(_serie_id?: number | undefined) => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/series/questions${_serie_id != undefined ? "?serie_id="+_serie_id : ""}`)
+    .then((res) => { return res.json()} )
     .catch((e) => console.log(e))
     
     if(response) {
+      console.log(response)
       setSerie(response)
     } else {
       notFound()
@@ -67,6 +67,7 @@ export default function DirectorView() {
     }
 
     const onDirectorGameFinish =  (_players_score: any) => {
+      console.log("fini ", serie)
       setView(ViewMode.FINISH)
     }
 
@@ -123,6 +124,7 @@ export default function DirectorView() {
 
   if(view == ViewMode.FINISH) {
     return <DirectorFinishView
+      total_question={serie.questionId.length}
       room={room} 
     />
   }

@@ -16,19 +16,19 @@ export default function PlayerAnswerView({
 }: PlayerAnswerViewProps) {
     
     const handleSendReponse = (reponse: Reponse, reponse_id: number) => {
-        socket.emit("player:reponse", reponse_id)
+        socket.emit("player:reponse", {reponse_id})
         setCurrentReponse(reponse)
     }
 
     return (
-        <Box display="flex" flexDirection="column" h="100vh" justifyContent="center">
-            <Box display="flex" flexDirection="column" h="auto" m="1rem">
+        <>
+            <Box display="flex" flexDirection="column" justifyContent="center" h="100%" m="1rem">
                 {
                     reponses.map((reponse: Reponse, index: number) => {
                         return <Button onClick={() => handleSendReponse(reponse, index)} my="1rem" key={index} bg={reponse == currentReponse?"green.700":"green.500"}>{reponse.text}</Button>
                     })
                 }
             </Box>
-        </Box>
+        </>
     )
 }

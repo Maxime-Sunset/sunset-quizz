@@ -36,6 +36,7 @@ const incrementeScore = (io) => {
     if(player.current_reponse == questions[0].reponseId) {
       player.score += 1
     }
+    player.current_reponse = -1
   })
 
   io.to(room.director).emit("director:room:update", room)
@@ -52,6 +53,7 @@ const displayReponse = (io) => {
   let question = questions[0]
   let reponse = question.reponses[question.reponseId].text
 
+  // Calculate score
   incrementeScore(io)
 
   io.to(room.director).emit("director:game:result", room)
@@ -163,15 +165,15 @@ app.prepare().then(() => {
       io.to(room.director).emit("player:join", playerData, room)
     })
 
-    socket.on("player:reponse", (reponse_id) => {
+    socket.on("player:reponse", ({reponse_id}) => {
       socket.data.current_reponse = reponse_id
       let p_index = room.players.findIndex((player) => player.id == socket.id)
       room.players[p_index] = {
         ...room.players[p_index],
-        current_reponse: reponse_id
+        current_reponse: reponse_id 
       }
       io.to(room.director).emit("director:room:update", room)
-      console.log("player:reponse: ", socket.data.username, socket.data.current_question_id)
+      console.log("player:reponse: ", socket.data.username, socket.data.current_reponse)
     })
 
     // ## DB CALLS ##

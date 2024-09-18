@@ -31,6 +31,7 @@ export default function PlayerView({ params }: any) {
                 setView(PlayerViewMode.ANSWER)
             }
             setReponses(_reponses)
+            setCurrentReponse(null)
         }
     
         const onPlayerGameResult = (_reponse: string) => {
@@ -85,6 +86,7 @@ export default function PlayerView({ params }: any) {
     if(view == PlayerViewMode.RESULT) {
         return <PlayerResultView
             result={result}
+            currentReponse={currentReponse}
         />
     }
 

@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import QRCode from "react-qr-code";
 
 interface QRCodeGeneratorProps {
@@ -6,13 +7,13 @@ interface QRCodeGeneratorProps {
 
 export default function QRCodeGenerator({ href }: QRCodeGeneratorProps) {
     return (
-        <div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
+        <Box height="auto" margin="0 auto" padding="20px" maxWidth={64*2+20} width="100%" border="solid 1px black">
             <QRCode
                 size={256}
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                 value={href}
                 viewBox={`0 0 256 256`}
             />
-        </div>
+        </Box>
     )
 }

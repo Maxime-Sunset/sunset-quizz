@@ -2,7 +2,7 @@
 
 import { Box, Button, Heading, Image } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import db, { Serie, Series } from "@/db";
+import db, { Difficulty, Serie, Series } from "@/db";
 
 export default function AdminSeriesPage() {
     const router = useRouter()
@@ -23,6 +23,8 @@ export default function AdminSeriesPage() {
                                 <Box display="flex" flexDirection="column" textAlign="center">
                                     <Box display="flex" flexDirection="column">
                                         <Heading as="h3">{serie.title}</Heading>
+                                        <Box>{serie.questionId.length} Questions</Box>
+                                        <Box>Difficulté: {serie.difficulty}</Box>
                                         <Image src="https://placehold.co/400x250" alt="" />
                                         <Button onClick={() => handlePlay(serie.id)} margin="10px 0" width="100%" colorScheme="green">PLAY</Button>
                                     </Box>

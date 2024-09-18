@@ -12,6 +12,7 @@ export type Question = {
 export type Serie = {
     id: number
     title: string,
+    difficulty: Difficulty
     questionId: number[]
 }
 
@@ -24,12 +25,20 @@ export type Db = {
     questions: Question[],
 }
 
+export enum Difficulty {
+    CASUAL = "CASUAL",
+    GEEK = "GEEK",
+    EVIL = "EVIL",
+}
+
 export const db = {
     series: [
         {
             id: 0,
             title: "Super Mario and Co",
-            questionId: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+            difficulty: Difficulty.GEEK,
+            //questionId: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+            questionId: [0]
         }
     ],
     questions: [
