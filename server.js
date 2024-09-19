@@ -16,6 +16,7 @@ const RESPONSE_TIME_DISPLAY = 5 *1000
 // CACHE
 let room = {}
 let questions = []
+let total_questions = -1
 
 const getdb = async () => {
   const db = await fetch(API_ENDPOINT)
@@ -25,13 +26,6 @@ const getdb = async () => {
 }
 
 const incrementeScore = (io) => {
-  // calculate score for each players
-  // let playerData = {
-  //   id: socket.id,
-  //   username: socket.data.username,
-  //   score: socket.data.score,
-  //   current_reponse: socket.data.current_reponse
-  // }
   room.players.forEach((player) => {
     if(player.current_reponse == questions[0].reponseId) {
       player.score += 1
@@ -66,11 +60,8 @@ const nextQuestion = (io) => {
   
   if(questions.length <= 0) {
     // GAME FINISH
-
-    room.players.sort((a, b) => a.score - b.score ) // score context
-
     io.to(room.director).emit("director:game:finish", room.players)
-    io.to(room.uid).emit("player:game:finish", room.players)
+    io.to(room.uid).emit("player:game:finish", room.players, total_questions)
     return
   }
 
@@ -111,6 +102,8 @@ app.prepare().then(() => {
     socket.on("director:game:start", async () => {
       // load questions in cache
       questions = await getQuestions(room.serie_id)
+      total_questions = questions.length
+
       shuffleArray(questions)
 
       // get next questions

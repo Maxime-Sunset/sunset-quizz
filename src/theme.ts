@@ -7,6 +7,22 @@ export const theme = extendTheme({
         color: 'grey.600',
         lineHeight: 'tall',
       },
+      heading: {
+        fontWeight: "bolder"
+      },
+      'h1': {
+
+      },
+      'h2': {
+
+      },
+      'h3': {
+        fontSize: "4xl",
+        fontWeight: "bolder"
+      },
+      'h4': {
+        
+      }
     }
   },
   fonts: {

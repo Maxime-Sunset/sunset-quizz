@@ -17,5 +17,5 @@ export async function GET(request: NextRequest) {
         }
     }
 
-    return new NextResponse(JSON.stringify(response))
+    return new NextResponse<Serie | Serie[]>(JSON.stringify(response))
 }

@@ -30,12 +30,12 @@ export default function DirectorView() {
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
 
   const fetchSerie = useCallback(async(_serie_id?: number | undefined) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/series/questions${_serie_id != undefined ? "?serie_id="+_serie_id : ""}`)
+    const response: Serie = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/series${_serie_id != undefined ? "?serie_id="+_serie_id : ""}`)
     .then((res) => { return res.json()} )
+    .then((res) => { return res[0]} )
     .catch((e) => console.log(e))
-    
+
     if(response) {
-      console.log(response)
       setSerie(response)
     } else {
       notFound()
@@ -67,7 +67,6 @@ export default function DirectorView() {
     }
 
     const onDirectorGameFinish =  (_players_score: any) => {
-      console.log("fini ", serie)
       setView(ViewMode.FINISH)
     }
 

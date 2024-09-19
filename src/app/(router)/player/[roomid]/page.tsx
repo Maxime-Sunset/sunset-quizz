@@ -10,6 +10,7 @@ import PlayerWaittingRoomView from "@/views/player/PlayerWaittingRoomView";
 import PlayerAnswerView from "@/views/player/PlayerAnswerView";
 import PlayerResultView from "@/views/player/PlayerResultView";
 import PlayerFinishView from "@/views/player/PlayerFinishView";
+import { Player } from "@/types/socket.type";
 
 
 export default function PlayerView({ params }: any) {
@@ -21,9 +22,13 @@ export default function PlayerView({ params }: any) {
     const [currentReponse, setCurrentReponse] = useState<Reponse | null>(null)
     const [result, setResult] = useState<string>("")
 
+    const [players, setPlayers] = useState<Player[]>([])
+    const [totalQuestions, setTotalQuestions] = useState<number>(-1)
+
     const getSerieTitleCallback = (title: string) => {
         setSerieTitle(title)
     }
+    
     useEffect(() => {
 
         const onPlayerGameQuestionChanged = (_reponses: Reponses) => {
@@ -41,7 +46,9 @@ export default function PlayerView({ params }: any) {
             setResult(_reponse)
         }
     
-        const onPlayerGameFinish = (_players_score: any) => {
+        const onPlayerGameFinish = (players: Player[], total_questions: number) => {
+            setTotalQuestions(total_questions)
+            setPlayers(players)
             setView(PlayerViewMode.FINISH)
         }
 
@@ -91,7 +98,7 @@ export default function PlayerView({ params }: any) {
     }
 
     if(view == PlayerViewMode.FINISH) {
-        return <PlayerFinishView />
+        return <PlayerFinishView socket={socket} players={players} total_questions={totalQuestions} />
     }
 
     return (
