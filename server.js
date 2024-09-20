@@ -10,8 +10,6 @@ const app = next({ dev, hostname, port });
 const handler = app.getRequestHandler();
 
 const API_ENDPOINT = `http://${hostname}:${port}/api`
-const QUESTION_TIME_DISPLAY = 10 *1000
-const RESPONSE_TIME_DISPLAY = 5 *1000
 
 // CACHE
 let room = {}
@@ -52,7 +50,7 @@ const displayReponse = (io) => {
 
   io.to(room.director).emit("director:game:result", room)
   io.to(room.uid).emit("player:game:result", reponse)
-  setTimeout(nextQuestion, RESPONSE_TIME_DISPLAY, io)
+  setTimeout(nextQuestion, room.ttr, io)
 }
 
 const nextQuestion = (io) => {
@@ -71,7 +69,7 @@ const nextQuestion = (io) => {
   io.to(room.director).emit("director:room:update", room)
   io.to(room.director).emit("director:game:question:changed", current_question)
   io.to(room.uid).emit("player:game:question:changed", current_question.reponses)
-  setTimeout(displayReponse, QUESTION_TIME_DISPLAY, io)
+  setTimeout(displayReponse, room.ttq, io)
 }
 
 app.prepare().then(() => {
@@ -84,7 +82,7 @@ app.prepare().then(() => {
 
     // ## DIRECTOR EVENTS ##
     // WHEN DIRECTOR ASK TO JOIN A ROOM
-    socket.on("director:join", ({room_uid, serie_id}, callback) => {
+    socket.on("director:join", ({room_uid, serie_id, ttq, ttr}, callback) => {
       socket.join(`${room_uid}`)
 
       room = {
@@ -93,6 +91,8 @@ app.prepare().then(() => {
         director: socket.id,
         serie_id: serie_id,
         current_question_id: null,
+        ttq: ttq *1000,
+        ttr: ttr *1000
       }
 
       callback(room)
@@ -119,7 +119,7 @@ app.prepare().then(() => {
       // send next responses to players
       io.to(room.uid).emit("player:game:question:changed", current_question.reponses)
 
-      setTimeout(displayReponse, QUESTION_TIME_DISPLAY, io)
+      setTimeout(displayReponse, room.ttq, io)
     })
 
     

@@ -23,6 +23,8 @@ export default function DirectorView() {
   const searchParams = useSearchParams()
   const room_uid: string | null = searchParams.get('roomUID')
   const serie_id: string | null = searchParams.get('serieId')
+  const ttq: string | null = searchParams.get('ttq')
+  const ttr: string | null = searchParams.get('ttr')
 
   const [view, setView] = useState<ViewMode>(ViewMode.LOBBY)
   const [serie, setSerie] = useState<Serie | undefined>(undefined)
@@ -87,7 +89,7 @@ export default function DirectorView() {
     socket.on("director:game:result", onDirectorGameResult)
     socket.on("director:game:question:changed", onDirectorGameQuestionChanged)
 
-    socket.emit("director:join", {room_uid, serie_id}, directorJoinCallback)
+    socket.emit("director:join", {room_uid, serie_id, ttq, ttr}, directorJoinCallback)
 
     return () => {
       socket.off("player:join", onPlayerJoin),
