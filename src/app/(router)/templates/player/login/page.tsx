@@ -9,13 +9,14 @@ export default function TemplatePlayerLogin() {
     const [username, setUsername] = useState<string>("")
     const [view, setView] = useState<PlayerViewMode>(PlayerViewMode.LOGIN)
 
+    console.log(view)
     return (
         <PlayerLoginView
             socket={socket}
             roomId="L33T"
             serieTitle="{Titre de la serie}"
             usernameState={[username, setUsername]}
-            viewState={[view, setView]}
+            setViewState={setView}
         />
     )
 }

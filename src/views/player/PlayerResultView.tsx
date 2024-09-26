@@ -6,31 +6,40 @@ interface PlayerResultViewProps {
     currentReponse: Reponse | null
 }
 
-export default function PlayerResultView({ 
-    result, 
+export default function PlayerResultView({
+    result,
     currentReponse
 }: PlayerResultViewProps) {
-    
-    let miss_label = "Aucune"
-    let player_reponse = currentReponse ? currentReponse.text : miss_label
+
+    const miss_label = "Aucune"
+    const player_reponse = currentReponse ? currentReponse.text : miss_label
     let label = "FAUX"
 
-    if(player_reponse == result) {
+    if (player_reponse == result) {
         label = "VRAI"
     }
 
     return (
         <Box display="flex" flexDirection="column" h="100%" justifyContent="center" m="auto">
-            <Box m="1rem">
-                <Heading as="h3">VOTRE REPONSE</Heading>
-                <Text>{player_reponse}</Text>
-            </Box>
+            <Heading
+                as="h4"
+                m="1rem"
+                color={label == "FAUX" ? "red" : "#00fe00"}
+                fontSize="5rem"
+                fontWeight="bolder"
+                textShadow="2px 0px 0px black, 0px 2px 0px black, 0px -2px 0px black, -2px 0px 0px black, -2px -2px 0px black, 2px 2px 0px black, 0px 3px 5px black"
 
-            <Heading as="h4" m="1rem">{player_reponse != miss_label ? label: " "}</Heading>
-            
+            >{player_reponse != miss_label ? label : " "}
+            </Heading>
+
             <Box m="1rem">
-                <Heading as="h3">REPONSE</Heading>
-                <Text>{result}</Text>
+                <Text
+                    color="white"
+                    fontSize="1.5rem"
+                    fontWeight="bolder"
+                    textShadow="2px 2px 5px black"
+                    mb="1rem"
+                >{result}</Text>
             </Box>
         </Box>
     )

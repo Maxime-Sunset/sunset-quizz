@@ -18,7 +18,9 @@ export default function TemplateDirectorLobby() {
                 }],
                 director: "DFS5qsS5qsd6-AZE6",
                 current_question_id: 0,
-                serie_id: 0
+                serie_id: 0,
+                ttq: 5,
+                ttr: 2
             }}
         />
     )

@@ -13,9 +13,9 @@ export default function TemplatePlayerAnswer() {
             socket={socket}
             currentReponseState={[currentReponse, setCurrentReponse]}
             reponses={[
-                { text: "{reponse.0}" },
-                { text: "{reponse.1}" },
-                { text: "{reponse.2}" },
+                { text: "{reponse.0 reponse.0}" },
+                { text: "{reponse.1, reponse.0}" },
+                { text: "{repo}" },
                 { text: "{reponse.3}" },
             ]}
         />

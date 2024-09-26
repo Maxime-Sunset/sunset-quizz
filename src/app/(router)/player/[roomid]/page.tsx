@@ -11,9 +11,10 @@ import PlayerAnswerView from "@/views/player/PlayerAnswerView";
 import PlayerResultView from "@/views/player/PlayerResultView";
 import PlayerFinishView from "@/views/player/PlayerFinishView";
 import { Player } from "@/types/socket.type";
+import PlayerEqualsView from "@/views/player/PlayerEqualsView";
 
 
-export default function PlayerView({ params }: any) {
+export default function PlayerView({ params }: { params: { roomid: string } }) {
     const room_uid = params.roomid
     const [username, setUsername] = useState<string>("")
     const [view, setView] = useState<PlayerViewMode>(PlayerViewMode.LOGIN)
@@ -21,6 +22,7 @@ export default function PlayerView({ params }: any) {
     const [reponses, setReponses] = useState<Reponses>([])
     const [currentReponse, setCurrentReponse] = useState<Reponse | null>(null)
     const [result, setResult] = useState<string>("")
+    const [player_equals, setPlayerEquals] = useState<Player[]>([])
 
     const [players, setPlayers] = useState<Player[]>([])
     const [totalQuestions, setTotalQuestions] = useState<number>(-1)
@@ -45,15 +47,23 @@ export default function PlayerView({ params }: any) {
             }
             setResult(_reponse)
         }
-    
-        const onPlayerGameFinish = (players: Player[], total_questions: number) => {
-            setTotalQuestions(total_questions)
-            setPlayers(players)
+        
+        const onPlayerGameEquals = (_player_equals: Player[]) => {
+            if(view != PlayerViewMode.EQUALS) {
+                setView(PlayerViewMode.EQUALS)
+            }
+            setPlayerEquals(_player_equals)
+        }
+
+        const onPlayerGameFinish = (_players: Player[], _total_questions: number) => {
+            setTotalQuestions(_total_questions)
+            setPlayers(_players)
             setView(PlayerViewMode.FINISH)
         }
 
         socket.on("player:game:question:changed", onPlayerGameQuestionChanged)
         socket.on("player:game:result", onPlayerGameResult)
+        socket.on("player:game:equals", onPlayerGameEquals)
         socket.on("player:game:finish", onPlayerGameFinish)
         
         socket.emit("get:serie:title", { room_uid }, getSerieTitleCallback)
@@ -71,7 +81,7 @@ export default function PlayerView({ params }: any) {
             roomId={room_uid}
             serieTitle={serieTitle}
             usernameState={[username, setUsername]}
-            viewState={[view, setView]}
+            setViewState={setView}
         />
     }
 
@@ -94,6 +104,13 @@ export default function PlayerView({ params }: any) {
         return <PlayerResultView
             result={result}
             currentReponse={currentReponse}
+        />
+    }
+
+    if(view == PlayerViewMode.EQUALS) {
+        return <PlayerEqualsView
+            socket={socket}
+            player_equals={player_equals}
         />
     }
 

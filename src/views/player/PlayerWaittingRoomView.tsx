@@ -1,5 +1,5 @@
-import { Box, Text } from "@chakra-ui/react"
-import { animate, motion } from "framer-motion"
+import { Text } from "@chakra-ui/react"
+import { motion } from "framer-motion"
 
 interface PlayerWaittingRoomViewProps {
     serieTitle: string,
@@ -28,7 +28,14 @@ export default function PlayerWaittingRoomView({
                     stiffness: 100
                 }}
             >   
-                <Text textAlign="center">{`Préparé vous `}<b>{username}</b>{`, le Quiz `}<b>{serieTitle}</b>{` va bientôt commencé !`}</Text>
+                <Text
+                    textAlign="center"
+                    color="white"
+                    fontSize="1.5rem"
+                    fontWeight="bolder"
+                    textShadow="2px 2px 5px black"
+                    mb="1rem"
+                >{`Préparez-vous ${username}, le Qizz va bientôt commencé !`}</Text>
             </motion.h2>
         </>
     )

@@ -16,7 +16,9 @@ export default function TemplateDirectorReponse() {
                 }],
                 director: "DFS5qsS5qsd6-AZE6",
                 current_question_id: 0,
-                serie_id: 0
+                serie_id: 0,
+                ttq: 10,
+                ttr: 10
             }}
             currentQuestion={{
                 id: 0,

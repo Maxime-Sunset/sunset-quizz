@@ -10,9 +10,9 @@ interface PlayerFinishViewProps {
 
 export default function PlayerFinishView({ socket, players, total_questions }: PlayerFinishViewProps) {
     players.sort((a, b) => b.score - a.score)
-    let player_position: number = players.findIndex((player: Player) => player.id == socket.id)+1
-    let player: Player | undefined = players.find((player: Player) => player.id == socket.id)
-    let player_score = player ? player.score : 0
+    const player_position: number = players.findIndex((player: Player) => player.id == socket.id)+1
+    const player: Player | undefined = players.find((player: Player) => player.id == socket.id)
+    const player_score = player ? player.score : 0
 
     return (
         <Box display="flex" h="100vh" m="auto" textAlign="center">

@@ -16,6 +16,11 @@ let room = {}
 let questions = []
 let total_questions = -1
 
+// equals context
+let ultimate_question = null
+let players_equal = []
+let players_equal_result = []
+
 const getdb = async () => {
   const db = await fetch(API_ENDPOINT)
   .then((res) => res.json())
@@ -53,11 +58,60 @@ const displayReponse = (io) => {
   setTimeout(nextQuestion, room.ttr, io)
 }
 
+const displayUltimateReponse = (io) => {
+  let question = ultimate_question
+  let reponse = question.reponses[question.reponseId].text
+
+  // Calculate ultimate score
+  players_equal_result.reverse()
+  let player_result = []
+  players_equal_result.forEach((result) => {
+    if(!player_result.includes(result)) {
+      player_result.push(result)
+    }
+  })
+  player_result.reverse()
+
+  for(let i = 0; i < player_result.length; i++) {
+    if(player_result[i].reponse_id == question.reponseId) {
+      let p_index = room.players.findIndex((player) => player.id == player_result[i].player.id)
+      let new_score = room.players[p_index].score += (player_result.length - i)
+      
+      room.players[p_index] = {
+        ...room.players[p_index],
+        score: new_score 
+      }
+    }
+  }
+
+  io.to(room.director).emit("director:game:result", room)
+  io.to(room.uid).emit("player:game:result", reponse)
+  setTimeout(finishGameAfterUltimate, room.ttr, io)
+}
+
+const finishGameAfterUltimate = (io) => {
+  io.to(room.director).emit("director:game:finish", room.players)
+  io.to(room.uid).emit("player:game:finish", room.players, total_questions)
+}
+
 const nextQuestion = (io) => {
   questions.shift()
   
   if(questions.length <= 0) {
     // GAME FINISH
+    
+    // count equals
+    let players_score = [...room.players]
+    players_score.sort((a,b) => b.score - a.score)
+    
+    players_equal = players_score.filter((player) => player.score == players_score[0].score)
+
+    if(players_equal.length > 1) {
+      io.to(room.director).emit("director:game:equals", players_equal)
+      io.to(room.uid).emit("player:game:equals", players_equal)
+      return
+    }
+
     io.to(room.director).emit("director:game:finish", room.players)
     io.to(room.uid).emit("player:game:finish", room.players, total_questions)
     return
@@ -101,7 +155,10 @@ app.prepare().then(() => {
 
     socket.on("director:game:start", async () => {
       // load questions in cache
-      questions = await getQuestions(room.serie_id)
+      var data = await getQuestions(room.serie_id)
+      questions = data.filter((q) => q.ultimate == false)
+      ultimate_question = data.filter((q) => q.ultimate == true)[0]
+
       total_questions = questions.length
 
       shuffleArray(questions)
@@ -120,6 +177,24 @@ app.prepare().then(() => {
       io.to(room.uid).emit("player:game:question:changed", current_question.reponses)
 
       setTimeout(displayReponse, room.ttq, io)
+    })
+
+    socket.on("director:game:equals:question", async () => {
+      // get ultimate questions
+      var current_question = ultimate_question
+
+      console.log("Question: ", current_question)
+
+      // send next question to director
+      io.to(room.director).emit("director:room:update", room)
+      io.to(room.director).emit("director:game:question:changed", current_question)
+      
+      // send next responses to players contested
+      players_equal.forEach((p) => {
+        io.to(p.id).emit("player:game:question:changed", current_question.reponses)
+      })
+
+      setTimeout(displayUltimateReponse, room.ttq, io)
     })
 
     
@@ -165,6 +240,12 @@ app.prepare().then(() => {
         ...room.players[p_index],
         current_reponse: reponse_id 
       }
+
+      // on ultimate question
+      if(ultimate_question != null) {
+        players_equal_result.push({player: room.players[p_index], reponse_id})
+      }
+
       io.to(room.director).emit("director:room:update", room)
       console.log("player:reponse: ", socket.data.username, socket.data.current_reponse)
     })

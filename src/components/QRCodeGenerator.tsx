@@ -7,7 +7,7 @@ interface QRCodeGeneratorProps {
 
 export default function QRCodeGenerator({ href }: QRCodeGeneratorProps) {
     return (
-        <Box height="auto" margin="0 auto" padding="20px" maxWidth={64*2+20} width="100%" border="solid 1px black">
+        <Box height="auto" margin="0 auto" padding="12%" maxWidth={128*2} width="100%">
             <QRCode
                 size={256}
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}

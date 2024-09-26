@@ -1,4 +1,4 @@
-import { Difficulty, Serie } from '@/db'
+import { Serie } from '@/db'
 import { RoomConfig } from '@/types/socket.type'
 import {
     Modal,
@@ -28,24 +28,24 @@ interface RoomConfigModalProps {
 export default function RoomConfigModal({ openner, serie, onValidate}: RoomConfigModalProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const Handler: any = React.cloneElement(openner, { onClick: onOpen})
+    const Handler: React.ReactElement = React.cloneElement(openner, { onClick: onOpen})
 
     const [config, setConfig] = useState<RoomConfig>({
         question_time_display: 10,
         reponse_time_display: 5,
     })
 
-    const handleQuestionTimeChange = (e: any) => {
+    const handleQuestionTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setConfig({
             ...config,
-            question_time_display: e.target.value
+            question_time_display: Number(e.target.value)
         })
     }
 
-    const handleReponseTimeChange = (e: any) => {
+    const handleReponseTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setConfig({
             ...config,
-            reponse_time_display: e.target.value
+            reponse_time_display: Number(e.target.value)
         })
     }
 
@@ -66,16 +66,16 @@ export default function RoomConfigModal({ openner, serie, onValidate}: RoomConfi
                 <Box><b>Questions:</b> {serie.questionId.length}</Box>
                 <hr style={{margin: "20px 0"}} />
                 <FormControl>
-                    <FormLabel>Temp d'affichage des questions. (en secondes)</FormLabel>
+                    <FormLabel>{`Temp d'affichage des questions. (en secondes)`}</FormLabel>
                     <FormHelperText>{`(recommended >10s)`}</FormHelperText>
-                    <Input type="number" value={config.question_time_display} onChange={(e: any) => handleQuestionTimeChange(e)} />
+                    <Input type="number" value={config.question_time_display} onChange={(e) => handleQuestionTimeChange(e)} />
                 </FormControl>
                 <br />
                 <br />
                 <FormControl>
-                    <FormLabel>Temp d'affichage des questions. (en secondes)</FormLabel>
+                    <FormLabel>{`Temp d'affichage des questions. (en secondes)`}</FormLabel>
                     <FormHelperText>{`(recommended >5s)`}</FormHelperText>
-                    <Input value={config.reponse_time_display} onChange={(e: any) => handleReponseTimeChange(e)} />
+                    <Input value={config.reponse_time_display} onChange={(e) => handleReponseTimeChange(e)} />
                 </FormControl>
             </ModalBody>
   

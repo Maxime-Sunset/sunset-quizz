@@ -7,9 +7,9 @@ export default function TemplatePlayerResult() {
     return (
         <PlayerResultView
             currentReponse={{
-                text: "player.reponse.choice"
+                text: "{player.reponse.choice}"
             }}
-            result="question.result"
+            result="Donkey kong"
         />
     )
 }

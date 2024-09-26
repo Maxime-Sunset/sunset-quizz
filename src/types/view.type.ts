@@ -3,5 +3,6 @@ export enum PlayerViewMode {
     WAITTING,
     ANSWER,
     RESULT,
-    FINISH
+    EQUALS,
+    FINISH,
 }

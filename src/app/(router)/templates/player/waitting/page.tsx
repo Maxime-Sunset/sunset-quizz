@@ -6,7 +6,7 @@ export default function TemplatePlayerWaitting() {
 
     return (
         <PlayerWaittingRoomView
-            username="{username}"
+            username="Maxime"
             serieTitle="{Titre de la serie}"
         />
     )

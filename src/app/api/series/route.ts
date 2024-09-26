@@ -9,7 +9,7 @@ import db, { Serie, Series } from "@/db"
 export async function GET(request: NextRequest) {
     let response: Series = db.series
 
-    let serie_id = request.nextUrl.searchParams.get("serie_id")
+    const serie_id = request.nextUrl.searchParams.get("serie_id")
     if(serie_id) {
         const serie: Serie | undefined = db.series.find((s: Serie) => s.id == Number(serie_id))
         if(serie) {

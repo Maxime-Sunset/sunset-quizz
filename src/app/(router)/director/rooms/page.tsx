@@ -2,7 +2,7 @@
 
 import { socket } from "@/socket";
 import { useSearchParams, notFound } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { Player, Room } from "@/types/socket.type";
 import { Question, Serie } from "@/db";
 import DirectorLobbyView from "@/views/director/DirectorLobbyView";
@@ -10,15 +10,25 @@ import DirectorQuestionView from "@/views/director/DirectorQuestionView";
 import DirectorFinishView from "@/views/director/DirectorFinishView";
 import DirectorReponseView from "@/views/director/DirectorReponseView";
 import CircleLoader from "@/components/CicleLoader";
+import DirectorEqualsView from "@/views/director/DirectorEqualsView";
 
 enum ViewMode {
   LOBBY,
   QUESTION,
   RESPONSE,
-  FINISH
+  EQUALS,
+  FINISH,
 }
 
 export default function DirectorView() {
+  return (
+    <Suspense>
+      <DirectorViewComponent />
+    </Suspense>
+  )
+} 
+
+const DirectorViewComponent = () => {
 
   const searchParams = useSearchParams()
   const room_uid: string | null = searchParams.get('roomUID')
@@ -28,8 +38,9 @@ export default function DirectorView() {
 
   const [view, setView] = useState<ViewMode>(ViewMode.LOBBY)
   const [serie, setSerie] = useState<Serie | undefined>(undefined)
-  const [room, setRoom] = useState<any>(null)
+  const [room, setRoom] = useState<Room | null>(null)
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
+  const [player_equals, setPlayerEquals] = useState<Player[]>([])
 
   const fetchSerie = useCallback(async(_serie_id?: number | undefined) => {
     const response: Serie = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/series${_serie_id != undefined ? "?serie_id="+_serie_id : ""}`)
@@ -55,7 +66,7 @@ export default function DirectorView() {
       .catch(console.error)
     }
 
-    const directorJoinCallback = (_room: any) => {
+    const directorJoinCallback = (_room: Room) => {
       setRoom(_room)
     }
 
@@ -68,13 +79,18 @@ export default function DirectorView() {
       setRoom(_room)
     }
 
-    const onDirectorGameFinish =  (_players_score: any) => {
+    const onDirectorGameFinish =  () => {
       setView(ViewMode.FINISH)
     }
 
     const onDirectorGameResult = (_room: Room) => {
       setView(ViewMode.RESPONSE)
       setRoom(_room)
+    }
+
+    const onDirectorGameEquals = (_player_equals: Player[]) => {
+      setView(ViewMode.EQUALS)
+      setPlayerEquals(_player_equals)
     }
 
     const onDirectorGameQuestionChanged = (_currentQuestion: Question) => {
@@ -87,6 +103,7 @@ export default function DirectorView() {
     socket.on("director:room:update", onDirectorRoomUpdate) 
     socket.on("director:game:finish", onDirectorGameFinish)
     socket.on("director:game:result", onDirectorGameResult)
+    socket.on("director:game:equals", onDirectorGameEquals)
     socket.on("director:game:question:changed", onDirectorGameQuestionChanged)
 
     socket.emit("director:join", {room_uid, serie_id, ttq, ttr}, directorJoinCallback)
@@ -112,7 +129,8 @@ export default function DirectorView() {
   if(view == ViewMode.QUESTION) {
     return <DirectorQuestionView
       room={room}
-      currentQuestion={currentQuestion} 
+      currentQuestion={currentQuestion}
+      response_mode={false}
     />
   }
 
@@ -121,6 +139,12 @@ export default function DirectorView() {
       room={room}
       currentQuestion={currentQuestion} 
     /> 
+  }
+
+  if(view == ViewMode.EQUALS) {
+    return <DirectorEqualsView
+      player_equals={player_equals}
+    />
   }
 
   if(view == ViewMode.FINISH) {

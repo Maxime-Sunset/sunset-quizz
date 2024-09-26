@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, Progress } from "@chakra-ui/react"
+import { Box, Progress } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 
 interface CustomProgressProps {
@@ -12,7 +12,7 @@ interface CustomProgressProps {
 export default function CustomProgress({ duration, width, max }: CustomProgressProps) {
     
     const [value, setValue] = useState<number>(0)
-    let clock: any = null
+    let clock: NodeJS.Timeout | null = null
 
     useEffect(() => {
         //clock = setInterval(() => tick(), duration / 100 * 1000)
@@ -21,7 +21,7 @@ export default function CustomProgress({ duration, width, max }: CustomProgressP
 
     useEffect(() => {
         if(max ? value >= max : value >= 100) {
-            clearInterval(clock)
+            clearInterval(Number(clock))
         }
     }, [value])
 
