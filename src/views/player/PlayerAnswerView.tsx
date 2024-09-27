@@ -26,7 +26,7 @@ export default function PlayerAnswerView({
                 onClick={() => handleSendReponse(reponse, reponse_id)}
                 my="1rem"
                 fontSize="1.2rem"
-                borderRadius="100px"
+                borderRadius="30px"
                 color="white"
                 fontWeight="bolder"
                 border="solid 3px white"

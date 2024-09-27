@@ -17,8 +17,8 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
 
   const ResponseBox = ({ response, true_response }: { response: Reponse, true_response?: boolean }) => {
     const defineBg = () => {
-      if(response_mode) {
-        if(true_response) {
+      if (response_mode) {
+        if (true_response) {
           return "#00fe00"
         } else {
           return "grey"
@@ -36,22 +36,24 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
       fontWeight="bolder"
       border="solid 3px white"
       padding="10px 30px"
+      w="100%"
+      h="100%"
     >
       {response.text}
     </Box>
   }
 
   useEffect(() => {
-  console.log(currentQuestion)
 
     const timeout = setInterval(() => {
       setProgressTime((current) => current += 0.01)
     }, 10)
 
     return () => {
+      setProgressTime(0)
       clearInterval(timeout)
     }
-  }, [])
+  }, [response_mode])
 
   return (
     <Box display="flex" overflow="hidden" bg="blue.200">
@@ -95,34 +97,38 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
                 }}
               >{currentQuestion.text}</motion.h3>
 
-              <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" flex="1 0" m="auto" w="auto" gap="50px" h="50%">
-                <Box display="flex" alignItems="center" justifyContent="space-between" gap="20px" w="100%">
+              <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" flex="1" m="auto" w="100%" gap="50px" h="50%">
+                <Box display="flex" alignItems="end" justifyContent="center" gap="20px" w="100%">
                   <ResponseBox response={currentQuestion.reponses[0]} true_response={currentQuestion.reponseId == 0} />
                   <ResponseBox response={currentQuestion.reponses[1]} true_response={currentQuestion.reponseId == 1} />
                 </Box>
-                <Box display="flex" justifyContent="space-between" gap="20px" w="100%">
+                <Box display="flex" alignItems="start" justifyContent="center" gap="20px" w="100%">
                   <ResponseBox response={currentQuestion.reponses[2]} true_response={currentQuestion.reponseId == 2} />
                   <ResponseBox response={currentQuestion.reponses[3]} true_response={currentQuestion.reponseId == 3} />
                 </Box>
               </Box>
 
               <Box my="10px">
-                <Progress
-                  sx={{
-                    ">div": {
-                      background: "#00fe00"
-                    }
-                  }}
-                  opacity={response_mode ? 0 : 1}
-                  w="100%"
-                  h="50px"
-                  borderRadius="150px"
-                  border="solid 3px black"
-                  min={0}
-                  max={3}
-                  value={progressTime}
+                {
+                  !response_mode
+                  &&
+                  <Progress
+                    sx={{
+                      ">div": {
+                        background: "#00fe00"
+                      }
+                    }}
+                    opacity={response_mode ? 0 : 1}
+                    w="100%"
+                    h="50px"
+                    borderRadius="150px"
+                    border="solid 3px black"
+                    min={0}
+                    max={room.ttq / 1000}
+                    value={progressTime}
 
-                />
+                  />
+                }
               </Box>
             </Box>
           )

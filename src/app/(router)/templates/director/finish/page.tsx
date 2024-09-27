@@ -40,7 +40,6 @@ export default function TemplateDirectorFinish() {
                 ttq: 10,
                 ttr: 10
             }}
-            total_question={20}
         />
     )
 }

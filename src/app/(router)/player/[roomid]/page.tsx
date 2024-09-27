@@ -13,7 +13,6 @@ import PlayerFinishView from "@/views/player/PlayerFinishView";
 import { Player } from "@/types/socket.type";
 import PlayerEqualsView from "@/views/player/PlayerEqualsView";
 
-
 export default function PlayerView({ params }: { params: { roomid: string } }) {
     const room_uid = params.roomid
     const [username, setUsername] = useState<string>("")
@@ -87,7 +86,6 @@ export default function PlayerView({ params }: { params: { roomid: string } }) {
 
     if(view == PlayerViewMode.WAITTING) {
         return <PlayerWaittingRoomView 
-            serieTitle={serieTitle}
             username={username}
         />
     }

@@ -8,7 +8,6 @@ import { Question, Serie } from "@/db";
 import DirectorLobbyView from "@/views/director/DirectorLobbyView";
 import DirectorQuestionView from "@/views/director/DirectorQuestionView";
 import DirectorFinishView from "@/views/director/DirectorFinishView";
-import DirectorReponseView from "@/views/director/DirectorReponseView";
 import CircleLoader from "@/components/CicleLoader";
 import DirectorEqualsView from "@/views/director/DirectorEqualsView";
 
@@ -135,21 +134,26 @@ const DirectorViewComponent = () => {
   }
 
   if(view == ViewMode.RESPONSE) {
-    return <DirectorReponseView
+    // return <DirectorReponseView
+    //   room={room}
+    //   currentQuestion={currentQuestion} 
+    // /> 
+    return <DirectorQuestionView
       room={room}
-      currentQuestion={currentQuestion} 
-    /> 
+      currentQuestion={currentQuestion}
+      response_mode={true}
+    />
   }
 
   if(view == ViewMode.EQUALS) {
     return <DirectorEqualsView
+      socket={socket}
       player_equals={player_equals}
     />
   }
 
   if(view == ViewMode.FINISH) {
     return <DirectorFinishView
-      total_question={serie.questionId.length}
       room={room} 
     />
   }

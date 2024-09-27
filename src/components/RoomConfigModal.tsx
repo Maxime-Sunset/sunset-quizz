@@ -31,8 +31,8 @@ export default function RoomConfigModal({ openner, serie, onValidate}: RoomConfi
     const Handler: React.ReactElement = React.cloneElement(openner, { onClick: onOpen})
 
     const [config, setConfig] = useState<RoomConfig>({
-        question_time_display: 10,
-        reponse_time_display: 5,
+        question_time_display: 25,
+        reponse_time_display: 10,
     })
 
     const handleQuestionTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,15 +67,15 @@ export default function RoomConfigModal({ openner, serie, onValidate}: RoomConfi
                 <hr style={{margin: "20px 0"}} />
                 <FormControl>
                     <FormLabel>{`Temp d'affichage des questions. (en secondes)`}</FormLabel>
-                    <FormHelperText>{`(recommended >10s)`}</FormHelperText>
+                    <FormHelperText>{`(recommended >25s)`}</FormHelperText>
                     <Input type="number" value={config.question_time_display} onChange={(e) => handleQuestionTimeChange(e)} />
                 </FormControl>
                 <br />
                 <br />
                 <FormControl>
-                    <FormLabel>{`Temp d'affichage des questions. (en secondes)`}</FormLabel>
-                    <FormHelperText>{`(recommended >5s)`}</FormHelperText>
-                    <Input value={config.reponse_time_display} onChange={(e) => handleReponseTimeChange(e)} />
+                    <FormLabel>{`Temp d'affichage des reponses. (en secondes)`}</FormLabel>
+                    <FormHelperText>{`(recommended >10s)`}</FormHelperText>
+                    <Input type="number" value={config.reponse_time_display} onChange={(e) => handleReponseTimeChange(e)} />
                 </FormControl>
             </ModalBody>
   

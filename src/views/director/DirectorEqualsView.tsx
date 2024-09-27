@@ -13,8 +13,8 @@ export default function DirectorEqualsView({socket, player_equals}: {socket: Soc
             <Box>{"Les joueurs suivant sont à égalité"}</Box>
             <Box>
                 {
-                    player_equals.map((player: Player) => {
-                        return <Box>{player.username}</Box>
+                    player_equals.map((player: Player, index: number) => {
+                        return <Box key={index}>{player.username}</Box>
                     })
                 }
             </Box>

@@ -1,7 +1,7 @@
 import CircleLoader from "@/components/CicleLoader";
 import { PlayerViewMode } from "@/types/view.type";
-import { Box, Button, Heading, Input, Text } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
+import { Box, Button, Input, Text } from "@chakra-ui/react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Socket } from "socket.io-client";
 
 interface PlayerLoginViewProps {
@@ -19,6 +19,25 @@ export default function PlayerLoginView({
     setViewState: setViewState,
     roomId
 }: PlayerLoginViewProps) {
+
+    const CARACTERE_MIN_LABEL = "Minimum 5 caractères"
+    const CARACTERE_MAX_LABEL = "Maximum 12 caractères"
+
+    const [isInputValid, setIsInputValid] = useState<boolean>(false)
+    const [validMsg, setValidMsg] = useState<string>(CARACTERE_MIN_LABEL)
+
+    useEffect(() => {
+        if(username.length < 5) {
+            setValidMsg(CARACTERE_MIN_LABEL)
+            setIsInputValid(false)
+        } else if(username.length > 12) {
+            setValidMsg(CARACTERE_MAX_LABEL)
+            setIsInputValid(false)
+        } else {
+            setValidMsg(" ")
+            setIsInputValid(true)
+        }
+    }, [username])
 
     const handleUsername = () => {
         socket.emit("player:join", { username, room_uid: roomId })
@@ -41,7 +60,6 @@ export default function PlayerLoginView({
 
             <Input
                 autoFocus={true}
-                mb="3rem"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="username"
@@ -50,16 +68,18 @@ export default function PlayerLoginView({
                 border="solid 3px #00ff00"
                 bg="white"
                 boxShadow="0 3px 15px -3px black"
+                mb="1rem"
                 _focus={{
                     border:"solid 3px #00ff00"
                 }}
             />
-
+            <Box h="20px">{!isInputValid ? <span>{validMsg}</span> : <span> </span>}</Box>
             <Button
+                isDisabled={!isInputValid}
                 onClick={() => handleUsername()}
                 _hover={{ bg: "cyan" }}
-                fontSize="1.5rem"
                 bg="cyan.400"
+                fontSize="1.5rem"
                 borderRadius="50px"
                 color="white"
                 border="solid 3px white"
@@ -67,6 +87,7 @@ export default function PlayerLoginView({
                 boxShadow="0 3px 15px -3px black"
                 w="50%"
                 mx="auto"
+                mt="3rem"
                 >START</Button>
         </Box>
     )

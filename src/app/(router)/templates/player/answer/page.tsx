@@ -15,7 +15,7 @@ export default function TemplatePlayerAnswer() {
             reponses={[
                 { text: "{reponse.0 reponse.0}" },
                 { text: "{reponse.1, reponse.0}" },
-                { text: "{repo}" },
+                { text: "Haut, haut, bas, bas, gauche, droite, gauche, droite, B, A, Start" },
                 { text: "{reponse.3}" },
             ]}
         />

@@ -30,7 +30,8 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
         <Box borderRadius="20%" border="solid 10px #00ff00" bg="white" boxShadow="0 3px 15px -3px black">
           <QRCodeGenerator href={`${process.env.NEXT_PUBLIC_CLIENT_LOCAL_DOMAIN}/player/${room.uid}`} />
         </Box>
-        <a href={`${process.env.NEXT_PUBLIC_CLIENT_LOCAL_DOMAIN}/player/${room.uid}`}>link</a>
+        
+        <a href={`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`}>{`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`}</a>
 
         <Box display="flex" textAlign="center" bg="white" borderWidth="3px" borderColor="cyan.400" color="cyan.400" borderRadius="50px" padding="3px 10px"
           boxShadow="0 3px 15px -3px black" fontSize="1.2rem"

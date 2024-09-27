@@ -25,9 +25,9 @@ export default function TemplateDirectorQuestion() {
                 reponseId: 1,
                 text: "question.text",
                 reponses: [
-                    { text: "reponse.0" },
-                    { text: "reponse.1" },
-                    { text: "reponse.2" },
+                    { text: "reponse.0 reponse.0" },
+                    { text: "Haut, haut, bas, bas, gauche, droite, gauche, droite, B, A, Start" },
+                    { text: "se.2" },
                     { text: "reponse.3" },
                 ],
             }}

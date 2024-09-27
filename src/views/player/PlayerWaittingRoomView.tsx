@@ -2,12 +2,10 @@ import { Text } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 
 interface PlayerWaittingRoomViewProps {
-    serieTitle: string,
     username: string
 }
 
 export default function PlayerWaittingRoomView({
-    serieTitle,
     username
 }: PlayerWaittingRoomViewProps) {
     

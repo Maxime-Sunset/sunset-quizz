@@ -29,7 +29,7 @@ export default function PlayerResultView({
                 fontWeight="bolder"
                 textShadow="2px 0px 0px black, 0px 2px 0px black, 0px -2px 0px black, -2px 0px 0px black, -2px -2px 0px black, 2px 2px 0px black, 0px 3px 5px black"
 
-            >{player_reponse != miss_label ? label : " "}
+            >{label}
             </Heading>
 
             <Box m="1rem">
