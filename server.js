@@ -2,14 +2,14 @@ import { createServer } from "node:http";
 import next from "next";
 import { Server } from "socket.io";
 
-const dev = process.env.NODE_ENV !== "production";
-const hostname = "localhost";
-const port = 3000;
+let dev = process.env.NODE_ENV;
+let hostname = process.env.HOSTNAME;
+let port = process.env.PORT;
 
-const app = process.env.NODE_ENV == "production" ? next({ dev: "production", hostname: process.env.HOSTNAME }) : next({ dev, hostname, port });
+const app = next({ dev, hostname, port })
 const handler = app.getRequestHandler();
 
-const API_ENDPOINT = process.env.NODE_ENV == "production" ? `https://${process.env.HOSTNAME}/api` : `http://${hostname}:${port}/api`
+const API_ENDPOINT = dev == "production" ? `https://${hostname}/api` : `http://${hostname}:${port}/api`
 
 // CACHE
 let room = {}
@@ -264,7 +264,7 @@ app.prepare().then(() => {
       process.exit(1);
     })
     .listen(port, () => {
-      console.log(`> Ready on http://${process.env.HOSTNAME}`+ port && `${port}`);
+      console.log(`> Ready on http://${process.env.HOSTNAME}`+ port && `:${port}`);
     })
 });
 
