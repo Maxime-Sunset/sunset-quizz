@@ -6,10 +6,10 @@ const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
 const port = 3000;
 
-const app = next({ dev, hostname, port });
+const app = process.env.NODE_ENV == "production" ? next({ dev: "production", hostname: process.env.HOSTNAME }) : next({ dev, hostname, port });
 const handler = app.getRequestHandler();
 
-const API_ENDPOINT = `http://${hostname}:${port}/api`
+const API_ENDPOINT = process.env.NODE_ENV == "production" ? `https://${process.env.HOSTNAME}/api` : `http://${hostname}:${port}/api`
 
 // CACHE
 let room = {}
@@ -264,7 +264,7 @@ app.prepare().then(() => {
       process.exit(1);
     })
     .listen(port, () => {
-      console.log(`> Ready on http://${hostname}:${port}`);
+      console.log(`> Ready on http://${process.env.HOSTNAME}`+ port && `${port}`);
     })
 });
 
