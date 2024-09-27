@@ -56,7 +56,7 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
   }, [response_mode])
 
   return (
-    <Box display="flex" overflow="hidden" bg="blue.200">
+    <Box display="flex" overflow="hidden">
       <PlayerList room={room} />
       <motion.div
         style={{

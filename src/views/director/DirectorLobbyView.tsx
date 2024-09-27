@@ -16,7 +16,7 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
   }
 
   return (
-    <Box display="flex" bg="blue.200">
+    <Box display="flex">
       <PlayerList room={room} />
       <Box display="flex" flex="1" flexDirection="column" justifyContent="center" gap="1rem" alignItems="center" h="100vh">
 

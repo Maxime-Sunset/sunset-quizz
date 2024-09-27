@@ -197,7 +197,7 @@ export default function DirectorFinishView({ room }: DirectorFinishViewProps) {
   }
 
   return (
-    <Box display="flex" flexDirection="column" flex="1" justifyContent="space-between" alignItems="center" h="100vh" bg="cyan.200">
+    <Box display="flex" flexDirection="column" flex="1" justifyContent="space-between" alignItems="center" h="100vh">
       <motion.div
         style={{
           margin: "auto",
