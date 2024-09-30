@@ -30,6 +30,7 @@ export default function TemplateDirectorQuestion() {
                     { text: "se.2" },
                     { text: "reponse.3" },
                 ],
+                ultimate: false
             }}
             response_mode={false}
         />

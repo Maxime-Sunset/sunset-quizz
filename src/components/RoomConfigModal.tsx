@@ -18,7 +18,6 @@ import {
     Spinner,
 } from '@chakra-ui/react'
 import React, { ReactElement, useState } from 'react'
-import CircleLoader from './CicleLoader'
 
 
 interface RoomConfigModalProps {

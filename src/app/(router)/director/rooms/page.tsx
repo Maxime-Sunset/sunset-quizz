@@ -10,7 +10,6 @@ import DirectorQuestionView from "@/views/director/DirectorQuestionView";
 import DirectorFinishView from "@/views/director/DirectorFinishView";
 import CircleLoader from "@/components/CicleLoader";
 import DirectorEqualsView from "@/views/director/DirectorEqualsView";
-import PlayerList from "@/components/PlayerList";
 
 enum ViewMode {
   LOBBY,

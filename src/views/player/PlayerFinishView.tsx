@@ -1,5 +1,5 @@
 import { Player } from "@/types/socket.type";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { Socket } from "socket.io-client";
 
 interface PlayerFinishViewProps {

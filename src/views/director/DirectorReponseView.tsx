@@ -1,14 +1,12 @@
 import { Question } from "@/db";
-import { Room } from "@/types/socket.type";
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 interface DirectorReponseViewProps {
-  room: Room,
   currentQuestion: Question | null
 }
 
-export default function DirectorReponseView({ room, currentQuestion }: DirectorReponseViewProps) {
+export default function DirectorReponseView({ currentQuestion }: DirectorReponseViewProps) {
   return (
     <Box display="flex">
       <Box display="flex" flex="1" flexDirection="column" justifyContent="center" gap="1rem" alignItems="center" h="100vh">
