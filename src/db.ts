@@ -47,7 +47,7 @@ export const db = {
             questionId: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
         },
         {
-            id: 2,
+            id: 3,
             title: "Super Mario and Co",
             difficulty: Difficulty.EVIL,
             questionId: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
