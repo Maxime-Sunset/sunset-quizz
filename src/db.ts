@@ -55,7 +55,7 @@ export const db = {
       id: 3,
       title: "Test 3 questions",
       difficulty: Difficulty.CASUAL,
-      questionId: [100, 101, 102, 103]
+      questionId: [100, 103]
     }
   ],
   questions: [

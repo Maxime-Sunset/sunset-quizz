@@ -10,7 +10,6 @@ export default function TemplatePlayerFinish() {
         <PlayerFinishView
             socket={socket}
             players={[]}
-            total_questions={0}
         />
     )
 }

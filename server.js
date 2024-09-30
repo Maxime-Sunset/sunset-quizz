@@ -6,7 +6,7 @@ const dev = process.env.NODE_ENV !== "production";
 const hostname = process.env.HOSTNAME || "localhost";
 const port = process.env.PORT || 3000;
 
-console.log(dev, hostname, port)
+console.log(dev ? "development" : "production", hostname, port)
 
 const app = next({ dev, hostname, port })
 const handler = app.getRequestHandler();
@@ -69,21 +69,31 @@ const displayUltimateReponse = (io) => {
   players_equal_result.reverse()
   let player_result = []
   players_equal_result.forEach((result) => {
-    if(!player_result.includes(result)) {
+    if(!player_result.find((res) => res.player.id == result.player.id)) {
       player_result.push(result)
     }
   })
   player_result.reverse()
+  console.log("response order: ", player_result)
 
   for(let i = 0; i < player_result.length; i++) {
+    let p_index = room.players.findIndex((player) => player.id == player_result[i].player.id)
+    let new_score = room.players[p_index].score + 1000
+
+    
     if(player_result[i].reponse_id == question.reponseId) {
-      let p_index = room.players.findIndex((player) => player.id == player_result[i].player.id)
-      let new_score = room.players[p_index].score += (player_result.length - i)
-      
-      room.players[p_index] = {
-        ...room.players[p_index],
-        score: new_score 
-      }
+      new_score += (player_result.length - i)
+      console.log("score +: ", player_result[i], new_score)
+    } else {
+      new_score -= 500
+      new_score += (player_result.length - i)
+      console.log("score -: ", player_result[i], new_score)
+    }
+    
+
+    room.players[p_index] = {
+      ...room.players[p_index],
+      score: new_score 
     }
   }
 
@@ -95,6 +105,7 @@ const displayUltimateReponse = (io) => {
 const finishGameAfterUltimate = (io) => {
   io.to(room.director).emit("director:game:finish", room.players)
   io.to(room.uid).emit("player:game:finish", room.players, total_questions)
+  room = {} // care
 }
 
 const nextQuestion = (io) => {
@@ -110,6 +121,7 @@ const nextQuestion = (io) => {
     players_equal = players_score.filter((player) => player.score == players_score[0].score)
 
     if(players_equal.length > 1) {
+      players_equal_result = []
       io.to(room.director).emit("director:game:equals", players_equal)
       io.to(room.uid).emit("player:game:equals", players_equal)
       return
@@ -117,6 +129,7 @@ const nextQuestion = (io) => {
 
     io.to(room.director).emit("director:game:finish", room.players)
     io.to(room.uid).emit("player:game:finish", room.players, total_questions)
+    room = {}
     return
   }
 
@@ -280,7 +293,7 @@ app.prepare().then(() => {
     // ## DB CALLS ##
     socket.on("get:serie:title", async ({}, callback) => {
       const db = await getdb()
-      const title = db.series.find((serie) => serie.id == room.serie_id).title
+      const title = room.serie_id ? db.series.find((serie) => serie.id == room.serie_id).title : ""
       callback(title)
     })
   });

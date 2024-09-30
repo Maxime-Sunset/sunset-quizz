@@ -5,14 +5,12 @@ import { Socket } from "socket.io-client";
 interface PlayerFinishViewProps {
     socket: Socket,
     players: Player[],
-    total_questions: number
 }
 
-export default function PlayerFinishView({ socket, players, total_questions }: PlayerFinishViewProps) {
+export default function PlayerFinishView({ socket, players }: PlayerFinishViewProps) {
     players.sort((a, b) => b.score - a.score)
     const player_position: number = players.findIndex((player: Player) => player.id == socket.id)+1
-    const player: Player | undefined = players.find((player: Player) => player.id == socket.id)
-    const player_score = player ? player.score : 0
+    socket.disconnect()
 
     return (
         <Box display="flex" h="100vh" m="auto" textAlign="center">
@@ -20,7 +18,6 @@ export default function PlayerFinishView({ socket, players, total_questions }: P
                 <Heading as="h3">Le Quiz est fini.</Heading>
                 <Box>Classement</Box>
                 <Box>{player_position}</Box>
-                <Box>{player_score+1}/{total_questions}</Box>
             </Box>
         </Box>
     )
