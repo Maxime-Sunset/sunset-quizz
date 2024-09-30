@@ -2,19 +2,22 @@ import { createServer } from "node:http";
 import next from "next";
 import { Server } from "socket.io";
 
-let dev = process.env.NODE_ENV;
-let hostname = process.env.HOSTNAME;
-let port = process.env.PORT;
+const dev = process.env.NODE_ENV !== "production";
+const hostname = process.env.HOSTNAME || "localhost";
+const port = process.env.PORT || 3000;
+
+console.log(dev, hostname, port)
 
 const app = next({ dev, hostname, port })
 const handler = app.getRequestHandler();
 
-const API_ENDPOINT = dev == "production" ? `https://${hostname}/api` : `http://${hostname}:${port}/api`
+const API_ENDPOINT = `http://${hostname}:${port}/api`
 
 // CACHE
 let room = {}
 let questions = []
 let total_questions = -1
+let connected_sockets = new Set()
 
 // equals context
 let ultimate_question = null
@@ -126,6 +129,14 @@ const nextQuestion = (io) => {
   setTimeout(displayReponse, room.ttq, io)
 }
 
+const disconnect_all_socket = () => {
+  Array.from(connected_sockets).forEach((s) => {
+    if (!s.data.is_director) {
+      s.disconnect(true)
+    }
+  })
+}
+
 app.prepare().then(() => {
   const httpServer = createServer(handler);
 
@@ -133,11 +144,21 @@ app.prepare().then(() => {
 
   io.on("connection", (socket) => {
     console.log(`io: socket connected ${socket.id}`)
+    
+    connected_sockets.add(socket)
+
+    socket.on("disconnect", () => {
+      console.log(`io: socket disconnect ${socket.id} .. ${socket.data.is_director}`)
+      connected_sockets.delete(socket)
+    })
 
     // ## DIRECTOR EVENTS ##
     // WHEN DIRECTOR ASK TO JOIN A ROOM
     socket.on("director:join", ({room_uid, serie_id, ttq, ttr}, callback) => {
       socket.join(`${room_uid}`)
+      socket.data.is_director = true
+
+      disconnect_all_socket()
 
       room = {
         uid: room_uid,
@@ -149,8 +170,9 @@ app.prepare().then(() => {
         ttr: ttr *1000
       }
 
-      callback(room)
+      console.log(connected_sockets)
       console.log("room create: ", room)
+      callback(room)
     })
 
     socket.on("director:game:start", async () => {
@@ -213,6 +235,11 @@ app.prepare().then(() => {
         socket.data.current_reponse = -1
       }
 
+      if(room.uid != room_uid) {
+        socket.disconnect(true)
+        return
+      }
+
       socket.join(room_uid)
 
       let playerData = {
@@ -264,7 +291,7 @@ app.prepare().then(() => {
       process.exit(1);
     })
     .listen(port, () => {
-      console.log(`> Ready on http://${process.env.HOSTNAME}`+ port && `:${port}`);
+      console.log(`> Ready on http://${hostname}:${port}`);
     })
 });
 
