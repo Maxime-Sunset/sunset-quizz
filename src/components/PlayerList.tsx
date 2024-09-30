@@ -1,13 +1,14 @@
-import { Player, Room } from "@/types/socket.type";
+import { Player } from "@/types/socket.type";
 import { Box, Heading, List } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface PlayerListProps {
-    room: Room
+    players: Player[]
 }
 
-export default function PlayerList({ room }: PlayerListProps) {
-
+export default function PlayerList({ players }: PlayerListProps) {
+    
     const NewPlayer = ({ player }: { player: Player }) => {
         return (
             <motion.p
@@ -25,8 +26,19 @@ export default function PlayerList({ room }: PlayerListProps) {
                     type: "spring",
                     stiffness: 50
                 }}
-
             >{`${player.username}`}</motion.p>
+        )
+    }
+
+    const ExistPlayer = ({ player }: { player: Player }) => {
+        return (
+            <Box
+                style={{
+                    textAlign: "center",
+                    color: "white",
+                    textShadow: "2px 0 black, -2px 0 black, 0 2px 10px black, 0 -2px black, 1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black"
+                }}
+            >{`${player.username}`}</Box>
         )
     }
 
@@ -50,11 +62,10 @@ export default function PlayerList({ room }: PlayerListProps) {
             >PLAYERS</Heading>
             <List>
                 {
-                    room.players.map((player: Player, index: number) => {
-                        return <NewPlayer key={index} player={player} />
+                    players.map((player: Player, index: number) => {
+                        return <ExistPlayer key={index+"in"} player={player} />
                     })
                 }
-
             </List>
         </Box>
     )

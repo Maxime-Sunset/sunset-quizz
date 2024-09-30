@@ -16,24 +16,25 @@ export default function AdminSeriesPage() {
     }
     
     return (
-        <Box display="flex" justifyContent="space-evenly">
+        <Box display="flex" justifyContent="space-evenly" h="100vh" bgGradient={"linear(to-t, #7928CA, #FF0080)"}>
             <Box display="flex" gap="20px" flexWrap="wrap">
                 {
                     series.map((serie: Serie, index) => {
                         return (
-                            <Box key={index} display="flex" minWidth="400px" flex="1 1 auto" textAlign="center">
+                            <Box key={index} display="flex" flex="1 1 auto" minWidth="400px" textAlign="center" mt="1rem">
                                 <Box display="flex" flexDirection="column">
-                                    <Heading as="h3">{serie.title}</Heading>
-                                    <Box>{serie.questionId.length} Questions</Box>
-                                    <Box>Difficulté: {serie.difficulty}</Box>
-                                    <Image src="https://placehold.co/400x250" alt="" />
-                                    {/* <Button margin="10px 0" width="100%" colorScheme="green" onClick={() => handlePlay(serie.id)}>PLAY</Button> */}
+                                    <Box bg="whitesmoke" boxShadow="0 0 10px black">
+                                        <Heading as="h3">{serie.title}</Heading>
+                                        <Box>{serie.questionId.length} Questions</Box>
+                                        <Box>Difficulté: {serie.difficulty}</Box>
+                                        <Image src="https://placehold.co/400x250" alt="" />
 
-                                    <RoomConfigModal
-                                        openner={<Button margin="10px 0" width="100%" colorScheme="green">PLAY</Button>}
-                                        serie={serie}
-                                        onValidate={handlePlay}
-                                    />
+                                        <RoomConfigModal
+                                            openner={<Button borderRadius="none" width="100%" colorScheme="green">PLAY</Button>}
+                                            serie={serie}
+                                            onValidate={handlePlay}
+                                        />
+                                    </Box>
                                 </Box>
                             </Box>
                         )

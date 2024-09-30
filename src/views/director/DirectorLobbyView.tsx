@@ -4,6 +4,7 @@ import { Room } from "@/types/socket.type";
 import { Box, Button, Heading } from "@chakra-ui/react";
 import { Socket } from "socket.io-client";
 import { SiGooglelens } from "react-icons/si";
+import React from "react";
 
 interface DirectorLobbyViewProps {
   socket: Socket
@@ -15,9 +16,16 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
     socket.emit("director:game:start")
   }
 
+  const DisplayFastLink = () => {
+    if(process.env.NEXT_PUBLIC_NODE_ENV == "dev") {
+      return <a href={`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`}>{`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`}</a>
+    }
+    return <React.Fragment></React.Fragment>
+  }
+  
   return (
     <Box display="flex">
-      <PlayerList room={room} />
+      <PlayerList players={room.players} />
       <Box display="flex" flex="1" flexDirection="column" justifyContent="center" gap="1rem" alignItems="center" h="100vh">
 
         <Heading
@@ -31,7 +39,7 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
           <QRCodeGenerator href={`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`} />
         </Box>
         
-        <a href={`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`}>{`${process.env.NEXT_PUBLIC_DOMAIN}/player/${room.uid}`}</a>
+        <DisplayFastLink />
 
         <Box display="flex" textAlign="center" bg="white" borderWidth="3px" borderColor="cyan.400" color="cyan.400" borderRadius="50px" padding="3px 10px"
           boxShadow="0 3px 15px -3px black" fontSize="1.2rem"

@@ -1,5 +1,5 @@
 import { Player } from "@/types/socket.type";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { Socket } from "socket.io-client";
 
 interface PlayerFinishViewProps {
@@ -13,11 +13,33 @@ export default function PlayerFinishView({ socket, players }: PlayerFinishViewPr
     socket.disconnect()
 
     return (
-        <Box display="flex" h="100vh" m="auto" textAlign="center">
-            <Box display="flex" flexDirection="column" justifyContent="center" m="1rem">
-                <Heading as="h3">Le Quiz est fini.</Heading>
-                <Box>Classement</Box>
-                <Box>{player_position}</Box>
+        <Box display="flex" flexDirection="column" h="100vh" m="auto" justifyContent="flex-start" textAlign="center">
+            <Text
+                as="h3"
+                color="white"
+                fontSize="2rem"
+                fontWeight="bolder"
+                textShadow="2px 2px 5px black"
+                
+            >{`Le Quiz est fini.`}</Text>
+            <Box display="flex" h="100%" flexDirection="column" justifyContent="center" gap="2rem">
+                <Box>
+                    <Text
+                        as="h3"
+                        color="white"
+                        fontSize="2rem"
+                        fontWeight="bolder"
+                        textShadow="2px 2px 5px black"
+                        
+                        >{`Vous etes`}</Text>
+                    <Text
+                        as="h3"
+                        color="white"
+                        fontSize="3rem"
+                        fontWeight="bolder"
+                        textShadow="2px 2px 5px black"
+                        >{player_position}<Text as="span" fontSize="1rem" verticalAlign="top"> em</Text></Text>
+                </Box>
             </Box>
         </Box>
     )

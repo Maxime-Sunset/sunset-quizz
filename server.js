@@ -73,7 +73,6 @@ const displayUltimateReponse = (io) => {
     }
   })
   player_result.reverse()
-  console.log("response order: ", player_result)
 
   for(let i = 0; i < player_result.length; i++) {
     let p_index = room.players.findIndex((player) => player.id == player_result[i].player.id)
@@ -82,11 +81,9 @@ const displayUltimateReponse = (io) => {
     
     if(player_result[i].reponse_id == question.reponseId) {
       new_score += (player_result.length - i)
-      console.log("score +: ", player_result[i], new_score)
     } else {
       new_score -= 500
       new_score += (player_result.length - i)
-      console.log("score -: ", player_result[i], new_score)
     }
     
 
@@ -182,7 +179,6 @@ app.prepare().then(() => {
         ttr: ttr *1000
       }
 
-      console.log(connected_sockets)
       console.log("room create: ", room)
       callback(room)
     })

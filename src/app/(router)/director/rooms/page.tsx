@@ -10,6 +10,7 @@ import DirectorQuestionView from "@/views/director/DirectorQuestionView";
 import DirectorFinishView from "@/views/director/DirectorFinishView";
 import CircleLoader from "@/components/CicleLoader";
 import DirectorEqualsView from "@/views/director/DirectorEqualsView";
+import PlayerList from "@/components/PlayerList";
 
 enum ViewMode {
   LOBBY,
@@ -119,6 +120,7 @@ const DirectorViewComponent = () => {
   if(serie == undefined || room == null) { return <CircleLoader /> }
 
   if(view == ViewMode.LOBBY) {
+    
     return <DirectorLobbyView
       socket={socket}
       room={room} 
@@ -126,7 +128,7 @@ const DirectorViewComponent = () => {
   }
 
   if(view == ViewMode.QUESTION) {
-    return <DirectorQuestionView
+      return <DirectorQuestionView
       room={room}
       currentQuestion={currentQuestion}
       response_mode={false}

@@ -35,413 +35,422 @@ export const db = {
   series: [
     {
       id: 0,
-      title: "Retro Gaming",
+      title: "Super Mario and Co",
       difficulty: Difficulty.CASUAL,
-      questionId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    },
-    {
-      id: 1,
-      title: "Retro Gaming",
-      difficulty: Difficulty.GEEK,
-      questionId: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+      questionId: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     },
     {
       id: 2,
-      title: "Retro Gaming",
-      difficulty: Difficulty.EVIL,
-      questionId: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+      title: "Super Mario and Co",
+      difficulty: Difficulty.GEEK,
+      questionId: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
     },
     {
-      id: 3,
-      title: "Test 3 questions",
-      difficulty: Difficulty.CASUAL,
-      questionId: [100, 103]
-    }
+      id: 2,
+      title: "Super Mario and Co",
+      difficulty: Difficulty.EVIL,
+      questionId: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+    },
   ],
   questions: [
-    {
-      "id": 100,
-      "text": "Quel était le premier jeu où Mario est apparu ?",
-      "reponses": [
-        { "text": "Super Mario Bros" },
-        { "text": "Mario Kart" },
-        { "text": "Donkey Kong" },
-        { "text": "Super Mario 64" }
-      ],
-      "ultimate": false,
-      "reponseId": 2
-    },
-    {
-      "id": 101,
-      "text": "Dans quel jeu un hérisson bleu doit ramasser des anneaux dorés ?",
-      "reponses": [
-        { "text": "Super Mario Bros" },
-        { "text": "Sonic the Hedgehog" },
-        { "text": "Pac-Man" },
-        { "text": "Mega Man" }
-      ],
-      "ultimate": false,
-      "reponseId": 1
-    },
-    {
-      "id": 102,
-      "text": "Quel personnage essaye de sauver la princesse Peach ?",
-      "reponses": [
-        { "text": "Link" },
-        { "text": "Donkey Kong" },
-        { "text": "Sonic" },
-        { "text": "Mario" }
-      ],
-      "ultimate": false,
-      "reponseId": 3
-    },
-    {
-      "id": 103,
-      "text": "Quel était le premier jeu où Mario est apparu ?",
-      "reponses": [
-        { "text": "Super Mario Bros" },
-        { "text": "Mario Kart" },
-        { "text": "Donkey Kong" },
-        { "text": "Super Mario 64" }
-      ],
-      "ultimate": true,
-      "reponseId": 2
-    },
-
-
-
-    
-
-    {
-      "id": 1,
-      "text": "Quel était le premier jeu où Mario est apparu ?",
-      "reponses": [
-        { "text": "Super Mario Bros" },
-        { "text": "Mario Kart" },
-        { "text": "Donkey Kong" },
-        { "text": "Super Mario 64" }
-      ],
-      "reponseId": 2
-    },
-    {
-      "id": 2,
-      "text": "Dans quel jeu un hérisson bleu doit ramasser des anneaux dorés ?",
-      "reponses": [
-        { "text": "Super Mario Bros" },
-        { "text": "Sonic the Hedgehog" },
-        { "text": "Pac-Man" },
-        { "text": "Mega Man" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 3,
-      "text": "Quel personnage essaye de sauver la princesse Peach ?",
-      "reponses": [
-        { "text": "Link" },
-        { "text": "Donkey Kong" },
-        { "text": "Sonic" },
-        { "text": "Mario" }
-      ],
-      "reponseId": 3
-    },
-    {
-      "id": 4,
-      "text": "Quel jeu a popularisé le personnage de Pikachu ?",
-      "reponses": [
-        { "text": "Digimon" },
-        { "text": "Metroid" },
-        { "text": "Pokémon" },
-        { "text": "Yu-Gi-Oh!" }
-      ],
-      "reponseId": 2
-    },
-    {
-      "id": 5,
-      "text": "Quel jeu de Nintendo inclut un gorille nommé Donkey Kong ?",
-      "reponses": [
-        { "text": "Donkey Kong" },
-        { "text": "Super Mario Bros" },
-        { "text": "Street Fighter" },
-        { "text": "Kirby's Dream Land" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 6,
-      "text": "Quel jeu d'arcade implique de faire tomber des blocs pour former des lignes ?",
-      "reponses": [
-        { "text": "Pac-Man" },
-        { "text": "Space Invaders" },
-        { "text": "Tetris" },
-        { "text": "Frogger" }
-      ],
-      "reponseId": 2
-    },
-    {
-      "id": 7,
-      "text": "Qui est le rival de Mario dans la série de jeux 'Mario Kart' ?",
-      "reponses": [
-        { "text": "Luigi" },
-        { "text": "Bowser" },
-        { "text": "Toad" },
-        { "text": "Yoshi" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 8,
-      "text": "Quel jeu utilise une manette en forme de croix ?",
-      "reponses": [
-        { "text": "Atari 2600" },
-        { "text": "NES" },
-        { "text": "GameCube" },
-        { "text": "Dreamcast" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 9,
-      "text": "Quel jeu met en vedette une boule jaune mangeant des fantômes ?",
-      "reponses": [
-        { "text": "Pac-Man" },
-        { "text": "Space Invaders" },
-        { "text": "Donkey Kong" },
-        { "text": "Sonic" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 10,
-      "text": "Quel jeu vidéo se déroule dans une galaxie lointaine où vous combattez des aliens ?",
-      "reponses": [
-        { "text": "Metroid" },
-        { "text": "Star Fox" },
-        { "text": "Super Mario Galaxy" },
-        { "text": "Zelda" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 11,
-      "text": "En quelle année est sortie la console NES en Amérique du Nord ?",
-      "reponses": [
-        { "text": "1983" },
-        { "text": "1985" },
-        { "text": "1987" },
-        { "text": "1990" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 12,
-      "text": "Quel est le nom du créateur de la série 'The Legend of Zelda' ?",
-      "reponses": [
-        { "text": "Hideo Kojima" },
-        { "text": "Shigeru Miyamoto" },
-        { "text": "Satoru Iwata" },
-        { "text": "Yu Suzuki" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 13,
-      "text": "Dans quel jeu de combat de 1992 peut-on effectuer des 'Fatalities' ?",
-      "reponses": [
-        { "text": "Street Fighter II" },
-        { "text": "Tekken" },
-        { "text": "Mortal Kombat" },
-        { "text": "Killer Instinct" }
-      ],
-      "reponseId": 2
-    },
-    {
-      "id": 14,
-      "text": "Quel jeu est connu pour la princesse Zelda et le héros Link ?",
-      "reponses": [
-        { "text": "Final Fantasy" },
-        { "text": "The Legend of Zelda" },
-        { "text": "Dragon Quest" },
-        { "text": "Fire Emblem" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 15,
-      "text": "Quel jeu d'arcade a introduit les tirs pour éliminer des envahisseurs extraterrestres ?",
-      "reponses": [
-        { "text": "Space Invaders" },
-        { "text": "Galaga" },
-        { "text": "Asteroids" },
-        { "text": "Defender" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 16,
-      "text": "Quel est le nom du frère de Mario, souvent vêtu de vert ?",
-      "reponses": [
-        { "text": "Luigi" },
-        { "text": "Toad" },
-        { "text": "Wario" },
-        { "text": "Bowser" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 17,
-      "text": "Dans quel jeu d'aventure Link doit-il sauver Hyrule ?",
-      "reponses": [
-        { "text": "Metroid" },
-        { "text": "Fire Emblem" },
-        { "text": "The Legend of Zelda" },
-        { "text": "Castlevania" }
-      ],
-      "reponseId": 2
-    },
-    {
-      "id": 18,
-      "text": "Quel jeu a popularisé l'exploration de donjons et de dragons ?",
-      "reponses": [
-        { "text": "Zelda" },
-        { "text": "Final Fantasy" },
-        { "text": "Diablo" },
-        { "text": "Dragon Quest" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 19,
-      "text": "Qui est l'antagoniste principal dans la série des jeux Sonic ?",
-      "reponses": [
-        { "text": "Shadow" },
-        { "text": "Knuckles" },
-        { "text": "Dr. Robotnik" },
-        { "text": "Silver" }
-      ],
-      "reponseId": 2
-    },
-    {
-      "id": 20,
-      "text": "Quel jeu de rôle japonais est connu pour ses batailles en tour par tour et ses cristaux magiques ?",
-      "reponses": [
-        { "text": "Chrono Trigger" },
-        { "text": "Final Fantasy" },
-        { "text": "Secret of Mana" },
-        { "text": "Xenogears" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 21,
-      "text": "Quel est le nom de l'attaque spéciale ultime de Ness dans 'Earthbound' ?",
-      "reponses": [
-        { "text": "PK Fire" },
-        { "text": "PK Thunder" },
-        { "text": "PSI Rockin" },
-        { "text": "PK Starstorm" }
-      ],
-      "reponseId": 2
-    },
-    {
-      "id": 22,
-      "text": "Quel est le code pour débloquer 30 vies dans le jeu 'Contra' sur NES ?",
-      "reponses": [
-        { "text": "Haut, bas, gauche, droite, A, B, Start" },
-        { "text": "Haut, haut, bas, bas, gauche, droite, gauche, droite, B, A, Start" },
-        { "text": "Bas, bas, haut, haut, A, B, B, A, Start" },
-        { "text": "Gauche, droite, gauche, droite, B, A, Select, Start" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 23,
-      "text": "Quel jeu sur Super Nintendo a pour protagonistes Chrono et Marle ?",
-      "reponses": [
-        { "text": "Final Fantasy VI" },
-        { "text": "Chrono Trigger" },
-        { "text": "Secret of Mana" },
-        { "text": "Terranigma" }
-      ],
-      "reponseId": 1
-    },
-    {
-      "id": 24,
-      "text": "Dans 'Castlevania', quel est le nom du chasseur de vampires ?",
-      "reponses": [
-        { "text": "Simon Belmont" },
-        { "text": "Richter Belmont" },
-        { "text": "Alucard" },
-        { "text": "Dracula" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 25,
-      "text": "Dans quel jeu texte des années 80 doit-on éviter un monstre appelé 'Grue' ?",
-      "reponses": [
-        { "text": "Zork" },
-        { "text": "Adventure" },
-        { "text": "King's Quest" },
-        { "text": "The Hitchhiker's Guide to the Galaxy" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 26,
-      "text": "Quel est le boss final dans 'The Legend of Zelda: Ocarina of Time' ?",
-      "reponses": [
-        { "text": "Ganondorf" },
-        { "text": "Majora" },
-        { "text": "Dark Link" },
-        { "text": "Vaati" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 27,
-      "text": "Dans 'Final Fantasy VII', quel personnage brandit une épée appelée 'Buster Sword' ?",
-      "reponses": [
-        { "text": "Cloud Strife" },
-        { "text": "Sephiroth" },
-        { "text": "Zack Fair" },
-        { "text": "Barret Wallace" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 28,
-      "text": "Dans quel jeu Mega Man doit-il affronter les Robot Masters pour voler leurs capacités ?",
-      "reponses": [
-        { "text": "Mega Man 2" },
-        { "text": "Mega Man X" },
-        { "text": "Mega Man Legends" },
-        { "text": "Mega Man 4" }
-      ],
-      "reponseId": 0
-    },
-    {
-      "id": 29,
-      "text": "Quel jeu SNES met en scène une quête pour restaurer un monde brisé et inclut un personnage appelé Terra ?",
-      "reponses": [
-        { "text": "Chrono Trigger" },
-        { "text": "Secret of Mana" },
-        { "text": "Final Fantasy VI" },
-        { "text": "Illusion of Gaia" }
-      ],
-      "reponseId": 2
-    },
-    {
-      "id": 30,
-      "text": "Dans quel jeu est introduit un héros appelé Samus Aran, qui porte une armure et combat des pirates de l'espace ?",
-      "reponses": [
-        { "text": "Metroid" },
-        { "text": "Star Fox" },
-        { "text": "Contra" },
-        { "text": "F-Zero" }
-      ],
-      "reponseId": 0
-    }
+    [
+      {
+          "id": 0,
+          "text": "Quel est le nom complet du créateur de Mario ?",
+          "reponses": [
+              { "text": "Shigeru Miyamoto" },
+              { "text": "Hideo Kojima" },
+              { "text": "Satoru Iwata" },
+              { "text": "Koji Kondo" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 1,
+          "text": "Dans quel jeu Mario fait-il sa première apparition ?",
+          "reponses": [
+              { "text": "Super Mario Bros" },
+              { "text": "Mario Bros" },
+              { "text": "Donkey Kong" },
+              { "text": "Mario Kart" }
+          ],
+          "ultimate": false,
+          "reponseId": 2
+      },
+      {
+          "id": 2,
+          "text": "Quel est le métier de Mario ?",
+          "reponses": [
+              { "text": "Plombier" },
+              { "text": "Charpentier" },
+              { "text": "Électricien" },
+              { "text": "Cuisinier" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 3,
+          "text": "Comment s'appelle le frère de Mario ?",
+          "reponses": [
+              { "text": "Luigi" },
+              { "text": "Wario" },
+              { "text": "Toad" },
+              { "text": "Yoshi" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 4,
+          "text": "Dans quel jeu Mario peut-il voler grâce à une casquette ailée ?",
+          "reponses": [
+              { "text": "Super Mario 64" },
+              { "text": "Super Mario Galaxy" },
+              { "text": "Super Mario Odyssey" },
+              { "text": "Super Mario Sunshine" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 5,
+          "text": "Quel est le nom du méchant principal que Mario combat souvent ?",
+          "reponses": [
+              { "text": "Wario" },
+              { "text": "Donkey Kong" },
+              { "text": "Bowser" },
+              { "text": "King Boo" }
+          ],
+          "ultimate": false,
+          "reponseId": 2
+      },
+      {
+          "id": 6,
+          "text": "Quel est le nom de la princesse que Mario doit sauver dans la plupart des jeux ?",
+          "reponses": [
+              { "text": "Princesse Daisy" },
+              { "text": "Princesse Peach" },
+              { "text": "Princesse Zelda" },
+              { "text": "Princesse Rosalina" }
+          ],
+          "ultimate": false,
+          "reponseId": 1
+      },
+      {
+          "id": 7,
+          "text": "Comment s'appelle la créature verte qui aide Mario en tant que monture ?",
+          "reponses": [
+              { "text": "Toad" },
+              { "text": "Yoshi" },
+              { "text": "Koopa Troopa" },
+              { "text": "Lakitu" }
+          ],
+          "ultimate": false,
+          "reponseId": 1
+      },
+      {
+          "id": 8,
+          "text": "Dans quel jeu Mario est-il équipé d'un canon à eau pour nettoyer une île ?",
+          "reponses": [
+              { "text": "Super Mario Galaxy" },
+              { "text": "Super Mario Odyssey" },
+              { "text": "Super Mario Sunshine" },
+              { "text": "Super Mario 64" }
+          ],
+          "ultimate": false,
+          "reponseId": 2
+      },
+      {
+          "id": 9,
+          "text": "Quel était le premier jeu Mario en 3D ?",
+          "reponses": [
+              { "text": "Super Mario Galaxy" },
+              { "text": "Super Mario Odyssey" },
+              { "text": "Super Mario 64" },
+              { "text": "Super Mario Sunshine" }
+          ],
+          "ultimate": false,
+          "reponseId": 2
+      },
+      {
+          "id": 10,
+          "text": "Quel est le nom complet du jeu sorti en 1985 qui a popularisé Mario dans le monde entier ?",
+          "reponses": [
+              { "text": "Super Mario World" },
+              { "text": "Super Mario Bros." },
+              { "text": "Mario Kart" },
+              { "text": "Mario Party" }
+          ],
+          "ultimate": true,
+          "reponseId": 1
+      },
+      {
+        "id": 11,
+        "text": "Quel était le nom original de Mario lors de sa première apparition dans Donkey Kong ?",
+        "reponses": [
+            { "text": "Plumber Man" },
+            { "text": "Mr. Video" },
+            { "text": "Jumpman" },
+            { "text": "Mario Bros" }
+        ],
+        "ultimate": false,
+        "reponseId": 2
+      },
+      {
+          "id": 12,
+          "text": "Quel est le tout premier jeu dans lequel Luigi est jouable ?",
+          "reponses": [
+              { "text": "Mario Bros" },
+              { "text": "Super Mario Bros" },
+              { "text": "Super Mario Bros: The Lost Levels" },
+              { "text": "Super Mario World" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 13,
+          "text": "Quel était le premier jeu Mario à introduire les niveaux aquatiques ?",
+          "reponses": [
+              { "text": "Super Mario Bros" },
+              { "text": "Mario Bros" },
+              { "text": "Donkey Kong Jr." },
+              { "text": "Super Mario Land" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 14,
+          "text": "Quel est le nom du compositeur principal de la musique des jeux Mario ?",
+          "reponses": [
+              { "text": "Koji Kondo" },
+              { "text": "Nobuo Uematsu" },
+              { "text": "Shigeru Miyamoto" },
+              { "text": "Satoru Iwata" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 15,
+          "text": "Dans quel jeu Mario peut-on entendre pour la première fois la voix de Charles Martinet, doubleur de Mario ?",
+          "reponses": [
+              { "text": "Super Mario 64" },
+              { "text": "Mario Kart 64" },
+              { "text": "Super Mario Sunshine" },
+              { "text": "Mario's Game Gallery" }
+          ],
+          "ultimate": false,
+          "reponseId": 3
+      },
+      {
+          "id": 16,
+          "text": "Quelle console a accueilli la première apparition de Mario en 3D isométrique ?",
+          "reponses": [
+              { "text": "Super Nintendo" },
+              { "text": "Nintendo 64" },
+              { "text": "GameCube" },
+              { "text": "Nintendo DS" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 17,
+          "text": "Quel ennemi emblématique des jeux Mario était initialement censé être un bœuf et non une tortue ?",
+          "reponses": [
+              { "text": "Goomba" },
+              { "text": "Koopa Troopa" },
+              { "text": "Lakitu" },
+              { "text": "Bowser" }
+          ],
+          "ultimate": false,
+          "reponseId": 3
+      },
+      {
+          "id": 18,
+          "text": "Dans Super Mario World, quelle couleur de Yoshi gagne des ailes lorsqu'il mange une carapace de Koopa ?",
+          "reponses": [
+              { "text": "Rouge" },
+              { "text": "Bleu" },
+              { "text": "Vert" },
+              { "text": "Jaune" }
+          ],
+          "ultimate": false,
+          "reponseId": 1
+      },
+      {
+          "id": 19,
+          "text": "Quel jeu de la série Mario a été entièrement conçu par Shigeru Miyamoto pour être joué à une seule main ?",
+          "reponses": [
+              { "text": "Super Mario Run" },
+              { "text": "New Super Mario Bros" },
+              { "text": "Super Mario 3D Land" },
+              { "text": "Super Mario Galaxy" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 20,
+          "text": "Dans le film 'The Super Mario Bros. Movie' (2023), quelle célèbre chanson des années 80 est utilisée pendant une course de karts ?",
+          "reponses": [
+              { "text": "Take on Me" },
+              { "text": "Jump" },
+              { "text": "Eye of the Tiger" },
+              { "text": "Don't Stop Believin'" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 21,
+          "text": "Dans quel jeu Mario trouve-t-on pour la première fois des mini-jeux jouables uniquement avec le microphone intégré de la Nintendo DS ?",
+          "reponses": [
+              { "text": "Mario Party DS" },
+              { "text": "Super Mario 64 DS" },
+              { "text": "New Super Mario Bros" },
+              { "text": "Mario Kart DS" }
+          ],
+          "ultimate": true,
+          "reponseId": 1
+      },
+      {
+        "id": 21,
+        "text": "Dans Super Mario Bros. 3, quel était le nom original japonais du personnage de Bowser ?",
+        "reponses": [
+            { "text": "Daimao Koopa" },
+            { "text": "King Koopa" },
+            { "text": "Bowser Jr." },
+            { "text": "Koopa Troopa" }
+        ],
+        "ultimate": false,
+        "reponseId": 0
+      },
+      {
+          "id": 22,
+          "text": "Dans quel jeu Mario le personnage Waluigi fait-il sa première apparition ?",
+          "reponses": [
+              { "text": "Mario Tennis" },
+              { "text": "Mario Kart 64" },
+              { "text": "Mario Party 3" },
+              { "text": "Super Smash Bros Melee" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 23,
+          "text": "Quel est le jeu Mario dans lequel un mode coopératif à 2 joueurs a été introduit pour la première fois ?",
+          "reponses": [
+              { "text": "Super Mario Bros" },
+              { "text": "Super Mario World" },
+              { "text": "Mario Bros" },
+              { "text": "New Super Mario Bros Wii" }
+          ],
+          "ultimate": false,
+          "reponseId": 2
+      },
+      {
+          "id": 24,
+          "text": "Quel personnage issu de la série Mario est connu sous le nom de 'Foreman Spike' ?",
+          "reponses": [
+              { "text": "Le chef de chantier de Wrecking Crew" },
+              { "text": "Un boss dans Super Mario World" },
+              { "text": "Un ennemi dans Donkey Kong" },
+              { "text": "Le père de Wario" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 25,
+          "text": "Dans quel jeu Mario apparaît pour la première fois le costume de la grenouille ?",
+          "reponses": [
+              { "text": "Super Mario World" },
+              { "text": "Super Mario Bros 3" },
+              { "text": "Super Mario Land 2" },
+              { "text": "Super Mario 64" }
+          ],
+          "ultimate": false,
+          "reponseId": 1
+      },
+      {
+          "id": 26,
+          "text": "Quel était le nom de la princesse dans Donkey Kong avant d'être renommée Princesse Peach ?",
+          "reponses": [
+              { "text": "Pauline" },
+              { "text": "Daisy" },
+              { "text": "Tina" },
+              { "text": "Rosalina" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 27,
+          "text": "Quel est le nom de l’ennemi de Mario, ressemblant à un soleil, que l’on rencontre dans Super Mario Bros. 3 ?",
+          "reponses": [
+              { "text": "Angry Sun" },
+              { "text": "Solar Koopa" },
+              { "text": "Fire Orb" },
+              { "text": "Sunny Koopa" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 28,
+          "text": "Dans Super Mario 64, combien d'étoiles minimum faut-il collecter pour affronter Bowser une dernière fois ?",
+          "reponses": [
+              { "text": "70" },
+              { "text": "120" },
+              { "text": "50" },
+              { "text": "80" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 29,
+          "text": "Dans Mario Kart: Super Circuit, combien de circuits sont disponibles au total, y compris ceux issus de Super Mario Kart ?",
+          "reponses": [
+              { "text": "20" },
+              { "text": "32" },
+              { "text": "40" },
+              { "text": "24" }
+          ],
+          "ultimate": false,
+          "reponseId": 2
+      },
+      {
+          "id": 30,
+          "text": "Dans Super Mario RPG: Legend of the Seven Stars, quel est le nom du personnage qui ressemble à une poupée et qui rejoint l'équipe de Mario ?",
+          "reponses": [
+              { "text": "Geno" },
+              { "text": "Mallow" },
+              { "text": "Smithy" },
+              { "text": "Culex" }
+          ],
+          "ultimate": false,
+          "reponseId": 0
+      },
+      {
+          "id": 31,
+          "text": "Dans le jeu Donkey Kong (1981), combien de points peut-on obtenir en atteignant directement Pauline sans toucher les barils ?",
+          "reponses": [
+              { "text": "100" },
+              { "text": "500" },
+              { "text": "300" },
+              { "text": "800" }
+          ],
+          "ultimate": true,
+          "reponseId": 1
+      }
+    ]
   ]
 }
 

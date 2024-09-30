@@ -1,4 +1,3 @@
-import PlayerList from "@/components/PlayerList"
 import { Question, Reponse } from "@/db"
 import { Room } from "@/types/socket.type"
 import { Box, Progress } from "@chakra-ui/react"
@@ -56,8 +55,7 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
   }, [response_mode])
 
   return (
-    <Box display="flex" overflow="hidden">
-      <PlayerList room={room} />
+    <Box display="flex">
       <motion.div
         style={{
           display: "flex",

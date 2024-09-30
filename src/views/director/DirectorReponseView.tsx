@@ -1,4 +1,3 @@
-import PlayerList from "@/components/PlayerList";
 import { Question } from "@/db";
 import { Room } from "@/types/socket.type";
 import { Box } from "@chakra-ui/react";
@@ -12,7 +11,6 @@ interface DirectorReponseViewProps {
 export default function DirectorReponseView({ room, currentQuestion }: DirectorReponseViewProps) {
   return (
     <Box display="flex">
-      <PlayerList room={room} />
       <Box display="flex" flex="1" flexDirection="column" justifyContent="center" gap="1rem" alignItems="center" h="100vh">
         <motion.h3
           animate={{

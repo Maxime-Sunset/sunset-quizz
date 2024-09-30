@@ -15,8 +15,10 @@ import {
     FormLabel,
     FormHelperText,
     FormControl,
+    Spinner,
 } from '@chakra-ui/react'
 import React, { ReactElement, useState } from 'react'
+import CircleLoader from './CicleLoader'
 
 
 interface RoomConfigModalProps {
@@ -27,6 +29,7 @@ interface RoomConfigModalProps {
 
 export default function RoomConfigModal({ openner, serie, onValidate}: RoomConfigModalProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [loading, setLoading] = useState<boolean>(false)
 
     const Handler: React.ReactElement = React.cloneElement(openner, { onClick: onOpen})
 
@@ -80,7 +83,11 @@ export default function RoomConfigModal({ openner, serie, onValidate}: RoomConfi
             </ModalBody>
   
             <ModalFooter>
-              <Button onClick={() => onValidate({id: serie.id, config})} colorScheme="green">Create Game</Button>
+              {
+                <Button onClick={() => {onValidate({id: serie.id, config}); setLoading(true)}} colorScheme="green" minW="150px">
+                    { !loading ? "Create Game" : <Spinner _selected="none" thickness='4px' speed='0.65s' emptyColor='gray.200' color='blue.500' size='sm'/> }
+                </Button>
+              }
             </ModalFooter>
           </ModalContent>
         </Modal>

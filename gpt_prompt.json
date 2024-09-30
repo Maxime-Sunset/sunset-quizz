@@ -1,0 +1,18 @@
+je voudrais 10 questions +1 question ultimate de difficulté extremement hard pour les geeks sur le theme super mario, comprenant les films, personnage peut connu, jeux vidéo principalement retro, createur.
+Je veut des questions qui n'ont pas encore été demandé avant.
+Essai de varié le positionement des réponses.
+L'id des question doit commencé à 21 et s'incrémenté de 1
+
+je voudrais cette list de question sous la forme d'un tableau json, les items de ce tableau doivent respecté ce format:
+{
+    "id": 103,
+    "text": "Quel était le premier jeu où Mario est apparu ?",
+    "reponses": [
+        { "text": "Super Mario Bros" },
+        { "text": "Mario Kart" },
+        { "text": "Donkey Kong" },
+        { "text": "Super Mario 64" }
+    ],
+    "ultimate": false,
+    "reponseId": 2
+}
