@@ -305,19 +305,7 @@ export const db = {
             ],
             "ultimate": false,
             "reponseId": 0
-        },
-        {
-            "id": 21,
-            "text": "Dans quel jeu Mario trouve-t-on pour la première fois des mini-jeux jouables uniquement avec le microphone intégré de la Nintendo DS ?",
-            "reponses": [
-                { "text": "Mario Party DS" },
-                { "text": "Super Mario 64 DS" },
-                { "text": "New Super Mario Bros" },
-                { "text": "Mario Kart DS" }
-            ],
-            "ultimate": true,
-            "reponseId": 1
-        },
+        }
         {
             "id": 21,
             "text": "Dans Super Mario Bros. 3, quel était le nom original japonais du personnage de Bowser ?",
