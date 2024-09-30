@@ -50,7 +50,7 @@ export const db = {
             id: 3,
             title: "Super Mario and Co",
             difficulty: Difficulty.EVIL,
-            questionId: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+            questionId: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
         },
     ],
     questions: [
@@ -305,7 +305,7 @@ export const db = {
             ],
             "ultimate": false,
             "reponseId": 0
-        }
+        },
         {
             "id": 21,
             "text": "Dans Super Mario Bros. 3, quel était le nom original japonais du personnage de Bowser ?",
