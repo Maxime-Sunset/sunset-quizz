@@ -11,7 +11,7 @@ console.log(dev ? "development" : "production", hostname, port)
 const app = next({ dev, hostname, port })
 const handler = app.getRequestHandler();
 
-const API_ENDPOINT = `http://${hostname}:${port}/api`
+const API_ENDPOINT = dev ? `http://${hostname}:${port}/api` : `${process.env.NEXT_PUBLIC_DOMAIN}/api`
 
 // CACHE
 let room = {}
