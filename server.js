@@ -16,7 +16,6 @@ const API_ENDPOINT = `http://${hostname}:${port}/api`
 // CACHE
 let room = {}
 let questions = []
-let total_questions = -1
 let connected_sockets = new Set()
 
 // equals context
@@ -104,7 +103,7 @@ const displayUltimateReponse = (io) => {
 
 const finishGameAfterUltimate = (io) => {
   io.to(room.director).emit("director:game:finish", room.players)
-  io.to(room.uid).emit("player:game:finish", room.players, total_questions)
+  io.to(room.uid).emit("player:game:finish", room.players)
   room = {} // care
 }
 
@@ -128,7 +127,7 @@ const nextQuestion = (io) => {
     }
 
     io.to(room.director).emit("director:game:finish", room.players)
-    io.to(room.uid).emit("player:game:finish", room.players, total_questions)
+    io.to(room.uid).emit("player:game:finish", room.players)
     room = {}
     return
   }
@@ -193,8 +192,6 @@ app.prepare().then(() => {
       var data = await getQuestions(room.serie_id)
       questions = data.filter((q) => q.ultimate == false)
       ultimate_question = data.filter((q) => q.ultimate == true)[0]
-
-      total_questions = questions.length
 
       shuffleArray(questions)
 

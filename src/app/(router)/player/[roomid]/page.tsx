@@ -24,7 +24,6 @@ export default function PlayerView({ params }: { params: { roomid: string } }) {
     const [player_equals, setPlayerEquals] = useState<Player[]>([])
 
     const [players, setPlayers] = useState<Player[]>([])
-    const [totalQuestions, setTotalQuestions] = useState<number>(-1)
 
     const getSerieTitleCallback = (title: string) => {
         setSerieTitle(title)
@@ -54,8 +53,7 @@ export default function PlayerView({ params }: { params: { roomid: string } }) {
             setPlayerEquals(_player_equals)
         }
 
-        const onPlayerGameFinish = (_players: Player[], _total_questions: number) => {
-            setTotalQuestions(_total_questions)
+        const onPlayerGameFinish = (_players: Player[]) => {
             setPlayers(_players)
             setView(PlayerViewMode.FINISH)
         }
@@ -113,7 +111,7 @@ export default function PlayerView({ params }: { params: { roomid: string } }) {
     }
 
     if(view == PlayerViewMode.FINISH) {
-        return <PlayerFinishView socket={socket} players={players} total_questions={totalQuestions} />
+        return <PlayerFinishView socket={socket} players={players} />
     }
 
     return (
