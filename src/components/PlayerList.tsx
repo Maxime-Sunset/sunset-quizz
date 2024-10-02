@@ -1,13 +1,24 @@
 import { Player } from "@/types/socket.type";
 import { Box, Heading, List } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 interface PlayerListProps {
     players: Player[]
 }
 
 export default function PlayerList({ players }: PlayerListProps) {
+    const [_players, setPlayers] = useState<Player[]>(players)
     
-    const ExistPlayer = ({ player }: { player: Player }) => {
+    useEffect(() => {
+        if(_players.length == 0) { return }
+        if(_players.length > 30) {
+            let x = [..._players]
+            x.splice(0, _players.length - 30)
+            setPlayers(x)
+        }
+    }, [_players])
+
+    const ExistPlayer = ({ username }: { username: String }) => {
         return (
             <Box
                 style={{
@@ -15,7 +26,7 @@ export default function PlayerList({ players }: PlayerListProps) {
                     color: "white",
                     textShadow: "2px 0 black, -2px 0 black, 0 2px 10px black, 0 -2px black, 1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black"
                 }}
-            >{`${player.username}`}</Box>
+            >{`${username}`}</Box>
         )
     }
 
@@ -39,8 +50,8 @@ export default function PlayerList({ players }: PlayerListProps) {
             >PLAYERS</Heading>
             <List>
                 {
-                    players.map((player: Player, index: number) => {
-                        return <ExistPlayer key={index+"in"} player={player} />
+                    _players.map((player: any, index: number) => {
+                        return <ExistPlayer key={index+"in"} username={player.username} />
                     })
                 }
             </List>

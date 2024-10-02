@@ -2,7 +2,7 @@ import { Question, Reponse } from "@/db"
 import { Room } from "@/types/socket.type"
 import { Box, Progress } from "@chakra-ui/react"
 import { motion } from "framer-motion"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
 interface DirectorQuestionViewProps {
   room: Room
@@ -13,6 +13,13 @@ interface DirectorQuestionViewProps {
 export default function DirectorQuestionView({ room, currentQuestion, response_mode }: DirectorQuestionViewProps) {
 
   const [progressTime, setProgressTime] = useState(0)
+  
+  const audioIntervalRef = useRef<NodeJS.Timeout| null>(null)
+
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const playSound = () => {
+    audioRef.current?.play()
+  }
 
   const ResponseBox = ({ response, true_response }: { response: Reponse, true_response?: boolean }) => {
     const defineBg = () => {
@@ -43,19 +50,37 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
   }
 
   useEffect(() => {
-
     const timeout = setInterval(() => {
       setProgressTime((current) => current += 0.01)
     }, 10)
 
+    if(response_mode) {
+      return () => {
+        clearInterval(timeout)
+        setProgressTime(0)
+        audioIntervalRef.current && clearInterval(audioIntervalRef.current)
+        audioIntervalRef.current = null
+      }
+    }
+
     return () => {
-      setProgressTime(0)
       clearInterval(timeout)
+      setProgressTime(0)
+      audioIntervalRef.current && clearInterval(audioIntervalRef.current)
+      audioIntervalRef.current = null
     }
   }, [response_mode])
 
+  useEffect(() => {
+    if(progressTime >= ((room.ttq/1000) - 6) && audioIntervalRef.current == null && response_mode == false) {
+      audioIntervalRef.current = setInterval(() => {
+        playSound()
+      }, 1000)
+    }
+  }, [progressTime])
+
   return (
-    <Box display="flex">
+    <Box display="flex" overflowY="hidden">
       <motion.div
         style={{
           display: "flex",
@@ -132,6 +157,7 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
           )
         }
       </motion.div>
+      <audio ref={audioRef} src="../clock.mp3">Sound are not compatible.</audio>
     </Box>
   )
 }

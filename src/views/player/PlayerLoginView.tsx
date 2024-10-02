@@ -3,6 +3,8 @@ import { PlayerViewMode } from "@/types/view.type";
 import { Box, Button, Input, Text } from "@chakra-ui/react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Socket } from "socket.io-client";
+import Image from "next/legacy/image";
+import ImageTitle from "../../../public/titre_mario.png";
 
 interface PlayerLoginViewProps {
     socket: Socket
@@ -49,14 +51,21 @@ export default function PlayerLoginView({
     }
 
     return (
-        <Box display="flex" textAlign="center" flex="1" flexDirection="column" justifyContent="center">
+        <Box display="flex" textAlign="center" flex="1" flexDirection="column" justifyContent="flex-start">
+            
+            <Box h="40%" display="flex" justifyContent="center" alignItems="center">
+                <Image src={ImageTitle} alt="" />
+            </Box>
+
+            <Box h="60%">
+
             <Text
                 color="white"
                 fontSize="1.5rem"
                 fontWeight="bolder"
                 textShadow="2px 2px 5px black"
                 mb="1rem"
-            >Choisit ton pseudo</Text>
+                >Choisit ton pseudo</Text>
 
             <Input
                 autoFocus={true}
@@ -72,7 +81,7 @@ export default function PlayerLoginView({
                 _focus={{
                     border:"solid 3px #00ff00"
                 }}
-            />
+                />
             <Box h="20px">{!isInputValid ? <span>{validMsg}</span> : <span> </span>}</Box>
             <Button
                 isDisabled={!isInputValid}
@@ -89,6 +98,7 @@ export default function PlayerLoginView({
                 mx="auto"
                 mt="3rem"
                 >START</Button>
+            </Box>
         </Box>
     )
 }

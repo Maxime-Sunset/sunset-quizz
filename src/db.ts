@@ -52,8 +52,50 @@ export const db = {
             difficulty: Difficulty.EVIL,
             questionId: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
         },
+        {
+            id: 4,
+            title: "Test Equal 1 question",
+            difficulty: Difficulty.CASUAL,
+            questionId: [100, 101, 102]
+        },
     ],
     questions: [
+        {
+            "id": 100,
+            "text": "Dans quel jeu Mario fait-il sa première apparition ?",
+            "reponses": [
+                { "text": "Super Mario Bros" },
+                { "text": "Mario Bros" },
+                { "text": "Donkey Kong" },
+                { "text": "Mario Kart" }
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 101,
+            "text": "Dans quel jeu Mario fait-il sa première apparition ?",
+            "reponses": [
+                { "text": "Super Mario Bros" },
+                { "text": "Mario Bros" },
+                { "text": "Donkey Kong" },
+                { "text": "Mario Kart" }
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 102,
+            "text": "Dans quel jeu Mario fait-il sa première apparition ?",
+            "reponses": [
+                { "text": "Super Mario Bros" },
+                { "text": "Mario Bros" },
+                { "text": "Donkey Kong" },
+                { "text": "Mario Kart" }
+            ],
+            "ultimate": true,
+            "reponseId": 2
+        },
         {
             "id": 0,
             "text": "Quel est le nom complet du créateur de Mario ?",
