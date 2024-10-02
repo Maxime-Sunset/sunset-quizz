@@ -7,18 +7,20 @@ interface PlayerListProps {
 }
 
 export default function PlayerList({ players }: PlayerListProps) {
-    const [_players, setPlayers] = useState<Player[]>(players)
+    const [_players, setPlayers] = useState<Player[]>([])
     
     useEffect(() => {
-        if(_players.length == 0) { return }
+        if(players.length == 0) { return }
         if(_players.length > 30) {
-            let x = [..._players]
+            const x = [..._players]
             x.splice(0, _players.length - 30)
             setPlayers(x)
+        } else {
+            setPlayers(players)
         }
-    }, [_players])
+    }, [players])
 
-    const ExistPlayer = ({ username }: { username: String }) => {
+    const ExistPlayer = ({ username }: { username: string }) => {
         return (
             <Box
                 style={{
@@ -50,7 +52,7 @@ export default function PlayerList({ players }: PlayerListProps) {
             >PLAYERS</Heading>
             <List>
                 {
-                    _players.map((player: any, index: number) => {
+                    _players.map((player: Player, index: number) => {
                         return <ExistPlayer key={index+"in"} username={player.username} />
                     })
                 }

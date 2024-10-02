@@ -14,16 +14,17 @@ export default function PlayerFinishView({ socket, players }: PlayerFinishViewPr
 
     return (
         <Box display="flex" flexDirection="column" h="100vh" m="auto" justifyContent="flex-start" textAlign="center">
-            <Text
-                as="h3"
-                color="white"
-                fontSize="2rem"
-                fontWeight="bolder"
-                textShadow="2px 2px 5px black"
-                
-            >{`Le Quiz est fini.`}</Text>
-            <Box display="flex" h="100%" flexDirection="column" justifyContent="center" gap="2rem">
-                <Box>
+            <Box display="flex" h="100%" my="auto" flexDirection="column" justifyContent="space-around" gap="2rem">
+                <Text
+                    mt="10rem"
+                    as="h3"
+                    color="white"
+                    fontSize="2rem"
+                    fontWeight="bolder"
+                    textShadow="2px 2px 5px black"
+                    
+                >{`Le Quiz est fini.`}</Text>
+                <Box flex="1" maxHeight="50vh">
                     <Text
                         as="h3"
                         color="white"

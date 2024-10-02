@@ -135,10 +135,6 @@ const DirectorViewComponent = () => {
   }
 
   if(view == ViewMode.RESPONSE) {
-    // return <DirectorReponseView
-    //   room={room}
-    //   currentQuestion={currentQuestion} 
-    // /> 
     return <DirectorQuestionView
       room={room}
       currentQuestion={currentQuestion}

@@ -16,12 +16,17 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
   
   const audioIntervalRef = useRef<NodeJS.Timeout| null>(null)
 
+  const reponseSoundRef = useRef<HTMLAudioElement>(null)
+  const playReponseSound = () => {
+    reponseSoundRef.current?.play()
+  }
+
   const audioRef = useRef<HTMLAudioElement>(null)
   const playSound = () => {
     audioRef.current?.play()
   }
 
-  const ResponseBox = ({ response, true_response }: { response: Reponse, true_response?: boolean }) => {
+  const ResponseBox = ({true_response, response}: {true_response: boolean, response: Reponse}) => {
     const defineBg = () => {
       if (response_mode) {
         if (true_response) {
@@ -35,15 +40,15 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
     }
 
     return <Box
-      fontSize="2rem"
-      bg={defineBg()}
-      borderRadius="100px"
-      color="white"
-      fontWeight="bolder"
-      border="solid 3px white"
-      padding="10px 30px"
-      w="100%"
-      h="100%"
+        fontSize="2rem"
+        borderRadius="100px"
+        color="white"
+        fontWeight="bolder"
+        border="solid 3px white"
+        padding="10px 30px"
+        width="100%"
+        height="100%"
+        backgroundColor={defineBg()}
     >
       {response.text}
     </Box>
@@ -55,6 +60,8 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
     }, 10)
 
     if(response_mode) {
+      playReponseSound()
+      
       return () => {
         clearInterval(timeout)
         setProgressTime(0)
@@ -157,7 +164,8 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
           )
         }
       </motion.div>
-      <audio ref={audioRef} src="../clock.mp3">Sound are not compatible.</audio>
+      <audio ref={reponseSoundRef} src="/reponse.wav" />
+      <audio ref={audioRef} src="/clock.mp3">Sound are not compatible.</audio>
     </Box>
   )
 }

@@ -33,6 +33,18 @@ export default function PlayerResultView({
             </Heading>
 
             <Box m="1rem">
+                {
+                    label == "FAUX"
+                    && 
+                    <Text
+                        color="white"
+                        fontSize="1.2rem"
+                        fontWeight="bolder"
+                        textShadow="2px 2px 5px black"
+                        mb="1rem"
+                        >{`La réponse était :`}
+                    </Text>
+                }
                 <Text
                     color="white"
                     fontSize="1.5rem"

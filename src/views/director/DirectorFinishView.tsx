@@ -1,18 +1,22 @@
 import { Player, Room } from "@/types/socket.type";
 import { Box, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-//import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 interface DirectorFinishViewProps {
   room: Room,
 }
 
 export default function DirectorFinishView({ room }: DirectorFinishViewProps) {
-  // const router = useRouter()
 
-  // const handleReturnToSeries = () => {
-  //   router.push(`${process.env.NEXT_PUBLIC_DOMAIN}/admin/series`)
-  // } TODO restart
+  const victoryThemeRef = useRef<HTMLAudioElement>(null)
+  const playVictoryThemeRef = () => {
+    victoryThemeRef.current?.play()
+  }
+
+  useEffect(() => {
+    playVictoryThemeRef()
+  }, [])
 
   const getTopThree = (): Player[][] => {
     const sort_by_score: Player[] = room.players.sort((a, b) => b.score - a.score)
@@ -225,7 +229,7 @@ export default function DirectorFinishView({ room }: DirectorFinishViewProps) {
       <Box display="flex" justifyContent="flex-end" h="60%">
         <Podium players={getTopThree()} />
       </Box>
-
+      <audio ref={victoryThemeRef} src="/victory.mp3" />
     </Box>
   )
 }
