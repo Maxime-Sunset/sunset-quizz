@@ -230,7 +230,7 @@ app.prepare().then(() => {
       questions = data.filter((q) => q.ultimate == false)
       ultimate_question = data.filter((q) => q.ultimate == true)[0]
 
-      shuffleArray(questions)
+      questions = shuffleArray(questions)
 
       // get next questions
       room.current_question_id = questions[0].id
@@ -347,4 +347,5 @@ function shuffleArray(array) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
+  return array
 }
