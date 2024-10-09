@@ -22,6 +22,7 @@ let connected_sockets = new Set()
 let ultimate_question = null
 let players_equal = []
 let players_equal_result = []
+let timeouts = []
 
 const getdb = async () => {
   const db = await fetch(API_ENDPOINT)
@@ -102,7 +103,7 @@ const displayReponse = (io) => {
 
   io.to(room.director).emit("director:game:result", room)
   io.to(room.uid).emit("player:game:result", reponse)
-  setTimeout(nextQuestion, room.ttr, io)
+  timeouts.push(setTimeout(nextQuestion, room.ttr, io))
 }
 
 const displayUltimateReponse = (io) => {
@@ -138,7 +139,7 @@ const displayUltimateReponse = (io) => {
 
   io.to(room.director).emit("director:game:result", room)
   io.to(room.uid).emit("player:game:result", reponse)
-  setTimeout(finishGameAfterUltimate, room.ttr, io)
+  timeouts.push(setTimeout(finishGameAfterUltimate, room.ttr, io))
 }
 
 const finishGameAfterUltimate = (io) => {
@@ -175,7 +176,7 @@ const nextQuestion = (io) => {
   io.to(room.director).emit("director:room:update", room)
   io.to(room.director).emit("director:game:question:changed", current_question)
   io.to(room.uid).emit("player:game:question:changed", current_question.reponses)
-  setTimeout(displayReponse, room.ttq, io)
+  timeouts.push(setTimeout(displayReponse, room.ttq, io))
 }
 
 const disconnect_all_socket = () => {
@@ -185,7 +186,6 @@ const disconnect_all_socket = () => {
     }
   })
 }
-
 
 app.prepare().then(() => {
   const httpServer = createServer(handler);
@@ -207,8 +207,15 @@ app.prepare().then(() => {
     socket.on("director:join", ({ room_uid, serie_id, ttq, ttr }, callback) => {
       socket.join(`${room_uid}`)
       socket.data.is_director = true
-
       disconnect_all_socket()
+
+      timeouts.forEach(t => {
+        clearTimeout(t)
+      })
+      timeouts = []
+      ultimate_question = null
+      players_equal = []
+      players_equal_result = []
 
       room = {
         uid: room_uid,
@@ -245,7 +252,7 @@ app.prepare().then(() => {
       // send next responses to players
       io.to(room.uid).emit("player:game:question:changed", current_question.reponses)
 
-      setTimeout(displayReponse, room.ttq, io)
+      timeouts.push(setTimeout(displayReponse, room.ttq, io))
     })
 
     socket.on("director:game:equals:question", async () => {
@@ -263,7 +270,7 @@ app.prepare().then(() => {
         io.to(p.id).emit("player:game:question:changed", current_question.reponses)
       })
 
-      setTimeout(displayUltimateReponse, room.ttq, io)
+      timeouts.push(setTimeout(displayUltimateReponse, room.ttq, io))
     })
 
 
