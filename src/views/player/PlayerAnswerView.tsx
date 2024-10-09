@@ -32,7 +32,7 @@ export default function PlayerAnswerView({
                 border="solid 3px white"
                 padding="5px 10px"
                 boxShadow="0 3px 15px -3px black"
-                bg={reponse == currentReponse ? "orange.400" : "orange.600"}
+                bg={reponse != currentReponse ? "#24b3fb" : "#f203a6"}
             >{reponse.text}</Box>
         )
     }

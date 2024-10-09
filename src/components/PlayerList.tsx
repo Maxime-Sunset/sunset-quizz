@@ -20,7 +20,7 @@ export default function PlayerList({ players }: PlayerListProps) {
         }
     }, [players])
 
-    const ExistPlayer = ({ username }: { username: string }) => {
+    const PlayerName = ({ username }: { username: string }) => {
         return (
             <Box
                 style={{
@@ -39,7 +39,7 @@ export default function PlayerList({ players }: PlayerListProps) {
             flexDirection="column"
             justifyContent="start"
             alignItems="center"
-            bg="#00fe00"
+            bg="#24b3fb"
             padding="10px"
             border="solid 5px white"
             borderRadius="20px"
@@ -53,7 +53,7 @@ export default function PlayerList({ players }: PlayerListProps) {
             <List>
                 {
                     _players.map((player: Player, index: number) => {
-                        return <ExistPlayer key={index+"in"} username={player.username} />
+                        return <PlayerName key={index+"in"} username={player.username} />
                     })
                 }
             </List>

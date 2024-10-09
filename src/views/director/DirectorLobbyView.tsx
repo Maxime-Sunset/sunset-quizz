@@ -5,9 +5,9 @@ import { Box, Button, Heading } from "@chakra-ui/react";
 import { Socket } from "socket.io-client";
 import { SiGooglelens } from "react-icons/si";
 import React, { useEffect, useRef } from "react";
-import Image from "next/legacy/image";
-import ImageTitle from "../../../public/titre_mario.png";
 import { motion } from "framer-motion"
+import TitleText from "@/components/TitleText";
+import LogoDisplay from "@/components/LogoDisplay";
 
 interface DirectorLobbyViewProps {
   socket: Socket
@@ -44,7 +44,7 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
   }
 
   return (
-    <Box display="flex">
+    <Box display="flex" overflow="hidden">
       <PlayerList players={room.players} />
       <Box display="flex" flex="1" flexDirection="column" justifyContent="center" gap="1rem" alignItems="center" h="100vh">
 
@@ -61,8 +61,9 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
             repeatType: "mirror"
           }}
         >
-          <Image src={ImageTitle} alt="" />
+          {/* <Image src={ImageTitle} alt="" /> */}
         </motion.div>
+          <TitleText />
 
         <Heading
           as="h3"
@@ -71,20 +72,22 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
                       1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black"
           fontSize="3.5rem">Scannez le QrCode pour participez</Heading>
 
-        <Box borderRadius="20%" border="solid 10px #00ff00" bg="white" boxShadow="0 3px 15px -3px black">
+        <Box borderRadius="20%" border="solid 10px" borderColor="#24b3fb" bg="white" boxShadow="0 3px 15px -3px black">
           <QRcode />
         </Box>
 
         <DisplayFastLink />
 
-        <Box display="flex" textAlign="center" bg="white" borderWidth="3px" borderColor="cyan.400" color="cyan.400" borderRadius="50px" padding="3px 10px"
-          boxShadow="0 3px 15px -3px black" fontSize="1.2rem"
+        <Box display="flex" textAlign="center" bg="#f203a6" color="white" borderRadius="50px" padding="3px 20px"
+          boxShadow="0 3px 15px -3px black" fontSize="1.2rem" fontStyle="italic"
         >
           {`Pour scannez, recherchez le logo`}<Box m="auto" padding="0 5px"><SiGooglelens size="20px" /></Box>{`sur votre mobile`}
         </Box>
 
-        <Button onClick={() => handleStartGame()} _hover={{ bg: "cyan" }} boxShadow="0 3px 15px -3px black" fontSize="1.5rem" mt="2rem" bg="cyan.400" borderRadius="50px" color="white" border="solid 3px white" padding="20px">START</Button>
+        <Button onClick={() => handleStartGame()} _hover={{ bg: "cyan" }} boxShadow="0 3px 15px -3px black" fontSize="1.5rem" mt="2rem" bg="#24b3fb" borderRadius="50px" color="white" padding="20px 25px">START</Button>
+        <LogoDisplay />
       </Box>
+
       <audio ref={mainthemeRef} src="/main_theme.mp3" loop={true} />
     </Box>
   )

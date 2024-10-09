@@ -1,3 +1,4 @@
+import LogoDisplay from "@/components/LogoDisplay"
 import { Question, Reponse } from "@/db"
 import { Room } from "@/types/socket.type"
 import { Box, Progress } from "@chakra-ui/react"
@@ -35,7 +36,7 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
           return "grey"
         }
       } else {
-        return "orange.600"
+        return "#f203a6"
       }
     }
 
@@ -114,7 +115,9 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
                 style={{
                   color: "white",
                   textShadow: "2px 0 black, -2px 0 black, 0 2px 10px black, 0 -2px black, 1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black",
-                  fontSize: "3.5rem"
+                  fontSize: "3.5rem",
+                  width: "70vw",
+                  margin: "auto"
                 }}
                 animate={{
                   opacity: [0, 1],
@@ -145,7 +148,7 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
                   <Progress
                     sx={{
                       ">div": {
-                        background: "#00fe00"
+                        background: "#fec110"
                       }
                     }}
                     opacity={response_mode ? 0 : 1}
@@ -164,6 +167,7 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
           )
         }
       </motion.div>
+      <LogoDisplay top />
       <audio ref={reponseSoundRef} src="/reponse.wav" />
       <audio ref={audioRef} src="/clock.mp3">Sound are not compatible.</audio>
     </Box>
