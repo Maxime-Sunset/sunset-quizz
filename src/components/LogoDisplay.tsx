@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import Image from "next/legacy/image";
-import ImageLogo from "../../public/Logo-80.png"
+import ImageLogo from "../../public/logo-80.png"
 
 interface LogoDisplayProps {
     top?: boolean
