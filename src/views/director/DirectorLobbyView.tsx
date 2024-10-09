@@ -87,8 +87,7 @@ export default function DirectorLobbyView({ socket, room }: DirectorLobbyViewPro
         <Button onClick={() => handleStartGame()} _hover={{ bg: "cyan" }} boxShadow="0 3px 15px -3px black" fontSize="1.5rem" mt="2rem" bg="#24b3fb" borderRadius="50px" color="white" padding="20px 25px">START</Button>
         <LogoDisplay />
       </Box>
-
-      <audio ref={mainthemeRef} src="/main_theme.mp3" loop={true} />
+      <audio ref={mainthemeRef} src="/rick.mp3" loop={true} />
     </Box>
   )
 }

@@ -22,6 +22,11 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
     reponseSoundRef.current?.play()
   }
 
+  const reponseSoundRef2 = useRef<HTMLAudioElement>(null)
+  const playReponseSound2 = () => {
+    reponseSoundRef2.current?.play()
+  }
+
   const audioRef = useRef<HTMLAudioElement>(null)
   const playSound = () => {
     audioRef.current?.play()
@@ -62,6 +67,7 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
 
     if(response_mode) {
       playReponseSound()
+      playReponseSound2()
       
       return () => {
         clearInterval(timeout)
@@ -168,7 +174,8 @@ export default function DirectorQuestionView({ room, currentQuestion, response_m
         }
       </motion.div>
       <LogoDisplay top />
-      <audio ref={reponseSoundRef} src="/reponse.wav" />
+      <audio ref={reponseSoundRef} src="/hehe.mp3" />
+      <audio ref={reponseSoundRef2} src="/reponse.wav" />
       <audio ref={audioRef} src="/clock.mp3">Sound are not compatible.</audio>
     </Box>
   )

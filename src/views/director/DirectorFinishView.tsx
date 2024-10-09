@@ -229,7 +229,7 @@ export default function DirectorFinishView({ room }: DirectorFinishViewProps) {
       <Box display="flex" justifyContent="flex-end" h="60%">
         <Podium players={getTopThree()} />
       </Box>
-      <audio ref={victoryThemeRef} src="/victory.mp3" />
+      <audio ref={victoryThemeRef} src="/wltp.mp3" />
     </Box>
   )
 }

@@ -715,7 +715,7 @@ export const db = {
                 { "text": "Terminator" },
                 { "text": "Piège de Cristal" },
             ],
-            "ultimate": false,
+            "ultimate": true,
             "reponseId": 0
         }
     ]
