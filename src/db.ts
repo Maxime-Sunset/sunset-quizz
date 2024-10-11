@@ -38,7 +38,10 @@ export const db = {
             id: 0,
             title: "Super Mario and Co",
             difficulty: Difficulty.CASUAL,
-            questionId: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+            questionId: [
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+                60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89
+            ]
         },
         {
             id: 99,
@@ -486,6 +489,367 @@ export const db = {
             "ultimate": false,
             "reponseId": 2
         },
+        {
+            "id": 60,
+            "text": "Quel est le premier jeu de la franchise Super Mario à introduire Yoshi ?",
+            "reponses": [
+                { "text": "Super Mario World" },
+                { "text": "Super Mario 64" },
+                { "text": "Super Mario Bros 3" },
+                { "text": "Super Mario Sunshine" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 61,
+            "text": "Dans quel jeu Mario porte-t-il pour la première fois un costume de raton laveur ?",
+            "reponses": [
+                { "text": "Super Mario Bros 3" },
+                { "text": "Super Mario World" },
+                { "text": "Super Mario Sunshine" },
+                { "text": "Super Mario Odyssey" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 62,
+            "text": "Quel personnage de Super Mario est connu pour être souvent kidnappé ?",
+            "reponses": [
+                { "text": "Princesse Peach" },
+                { "text": "Princesse Daisy" },
+                { "text": "Luigi" },
+                { "text": "Toad" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 63,
+            "text": "Dans quel jeu Super Mario a-t-on introduit l'ennemi Bowser Jr. ?",
+            "reponses": [
+                { "text": "Super Mario Sunshine" },
+                { "text": "Super Mario Galaxy" },
+                { "text": "New Super Mario Bros" },
+                { "text": "Super Mario 64" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 64,
+            "text": "Quel jeu Mario a été le premier à permettre de jouer avec quatre personnages différents ?",
+            "reponses": [
+                { "text": "Super Mario 3D World" },
+                { "text": "Super Mario 64 DS" },
+                { "text": "Super Mario Galaxy" },
+                { "text": "Super Mario Kart" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 65,
+            "text": "Quel personnage est l'alter ego maléfique de Mario ?",
+            "reponses": [
+                { "text": "Wario" },
+                { "text": "Bowser" },
+                { "text": "Donkey Kong" },
+                { "text": "Luigi" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 66,
+            "text": "Quelle année marque la sortie du tout premier jeu Super Mario Bros sur la NES ?",
+            "reponses": [
+                { "text": "1985" },
+                { "text": "1983" },
+                { "text": "1987" },
+                { "text": "1990" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 67,
+            "text": "Avant de devenir plombier, quel métier Mario exerçait-il dans le jeu d'origine ?",
+            "reponses": [
+                { "text": "Charpentier" },
+                { "text": "Cuisinier" },
+                { "text": "Pilote" },
+                { "text": "Docteur" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 68,
+            "text": "Dans quel jeu Mario utilise-t-il un aspirateur pour capturer des fantômes ?",
+            "reponses": [
+                { "text": "Luigi's Mansion" },
+                { "text": "Super Mario Sunshine" },
+                { "text": "Mario Party" },
+                { "text": "Super Mario RPG" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 69,
+            "text": "Dans 'Super Mario Bros 2', quel personnage jouable peut flotter brièvement dans les airs ?",
+            "reponses": [
+                { "text": "Princesse Peach" },
+                { "text": "Mario" },
+                { "text": "Toad" },
+                { "text": "Luigi" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 70,
+            "text": "Dans 'Super Mario Galaxy', qui est la mystérieuse gardienne des étoiles qui aide Mario ?",
+            "reponses": [
+                { "text": "Harmonie" },
+                { "text": "Peach" },
+                { "text": "Daisy" },
+                { "text": "Pauline" }
+            ],
+            "ultimate": false,
+            "reponseId": 0
+        },
+        {
+            "id": 71,
+            "text": "Quelle capacité Mario obtient-il après avoir mangé un champignon rouge et blanc ?",
+            "reponses": [
+                { "text": "Lancer des boules de feu" },
+                { "text": "Grandir en taille" },
+                { "text": "Voler" },
+                { "text": "Devenir invisible" }
+            ],
+            "ultimate": false,
+            "reponseId": 1
+        },
+        {
+            "id": 72,
+            "text": "Quelle couleur est le chapeau de Mario ?",
+            "reponses": [
+                { "text": "Bleu" },
+                { "text": "Vert" },
+                { "text": "Jaune" },
+                { "text": "Rouge" },
+            ],
+            "ultimate": false,
+            "reponseId": 3
+        },
+        {
+            "id": 73,
+            "text": "Quel est le principal véhicule de Mario dans 'Mario Kart' ?",
+            "reponses": [
+                { "text": "Bicyclette" },
+                { "text": "Avion" },
+                { "text": "Moto" },
+                { "text": "Kart" },
+            ],
+            "ultimate": false,
+            "reponseId": 3
+        },
+        {
+            "id": 74,
+            "text": "Quel animal est Yoshi ?",
+            "reponses": [
+                { "text": "Un oiseau" },
+                { "text": "Un poisson" },
+                { "text": "Un cheval" },
+                { "text": "Un dinosaure" },
+            ],
+            "ultimate": false,
+            "reponseId": 3
+        },
+        {
+            "id": 75,
+            "text": "Quel est l'objet qui permet à Mario de lancer des boules de feu ?",
+            "reponses": [
+                { "text": "Champignon" },
+                { "text": "Étoile" },
+                { "text": "Tortue" },
+                { "text": "Fleur de feu" },
+            ],
+            "ultimate": false,
+            "reponseId": 3
+        },
+        {
+            "id": 76,
+            "text": "Quel type de créature est souvent un ennemi classique de Mario ?",
+            "reponses": [
+                { "text": "Lapin" },
+                { "text": "Tortue" },
+                { "text": "Chien" },
+                { "text": "Oiseau" },
+            ],
+            "ultimate": false,
+            "reponseId": 1
+        },
+        {
+            "id": 77,
+            "text": "Quel est le nom de l'ami de Mario qui est une petite créature champignon ?",
+            "reponses": [
+                { "text": "Yoshi" },
+                { "text": "Toad" },
+                { "text": "Wario" },
+                { "text": "Luigi" },
+            ],
+            "ultimate": false,
+            "reponseId": 1
+        },
+        {
+            "id": 78,
+            "text": "Quel est le but des pièces dans la série Super Mario ?",
+            "reponses": [
+                { "text": "Obtenir des pouvoirs" },
+                { "text": "Gagner des vies" },
+                { "text": "Acheter des objets" },
+                { "text": "Vaincre des ennemis" },
+            ],
+            "ultimate": false,
+            "reponseId": 1
+        },
+        {
+            "id": 79,
+            "text": "Quel est le nom de la piste emblématique qui a été présente dans presque tous les jeux Mario Kart ?",
+            "reponses": [
+                { "text": "Moo Moo Farm" },
+                { "text": "Rainbow Road" },
+                { "text": "Bowser Castle" },
+                { "text": "Peach Garden" },
+            ],
+            "ultimate": false,
+            "reponseId": 1
+        },
+        {
+            "id": 80,
+            "text": "Quel personnage est connu pour sa vitesse dans Mario Kart ?",
+            "reponses": [
+                { "text": "Toad" },
+                { "text": "Wario" },
+                { "text": "Metal Mario" },
+                { "text": "Donkey Kong" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 81,
+            "text": "Quel est l'effet de l'objet Banane dans Mario Kart ?",
+            "reponses": [
+                { "text": "Gagner de la vitesse" },
+                { "text": "Éviter les carapaces" },
+                { "text": "Faire déraper les adversaires" },
+                { "text": "Devenir invincible" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 82,
+            "text": "Quel est le nom de la carapace qui vise le premier joueur ?",
+            "reponses": [
+                { "text": "Carapace rouge" },
+                { "text": "Carapace verte" },
+                { "text": "Carapace bleue" },
+                { "text": "Carapace dorée" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 83,
+            "text": "Quel est le mode de jeu où les joueurs s'affrontent dans une arène plutôt que sur une piste ?",
+            "reponses": [
+                { "text": "Course" },
+                { "text": "Contre-la-montre" },
+                { "text": "Mode bataille" },
+                { "text": "Championnat" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 84,
+            "text": "Quel est le chapeau caractéristique de Toad ?",
+            "reponses": [
+                { "text": "Un chapeau de cow-boy" },
+                { "text": "Un casque de pilote" },
+                { "text": "Un chapeau en forme de champignon" },
+                { "text": "Un chapeau de sorcier" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 85,
+            "text": "Dans quel jeu Luigi est-il le personnage principal ?",
+            "reponses": [
+                { "text": "Super Mario Galaxy" },
+                { "text": "Mario Kart" },
+                { "text": "Luigi's Mansion" },
+                { "text": "Super Mario Bros" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 86,
+            "text": "Quel est le principal ennemi que Luigi affronte dans 'Luigi's Mansion' ?",
+            "reponses": [
+                { "text": "Bowser" },
+                { "text": "Wario" },
+                { "text": "Fantômes" },
+                { "text": "Kamek" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 87,
+            "text": "Quel est le type de créature que Toad représente ?",
+            "reponses": [
+                { "text": "Un dinosaure" },
+                { "text": "Un poisson" },
+                { "text": "Un champignon" },
+                { "text": "Un oiseau" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 88,
+            "text": "Quel est le cri emblématique de Toad lorsqu'il est heureux ?",
+            "reponses": [
+                { "text": "Luigi!" },
+                { "text": "Mario!" },
+                { "text": "Toad!" },
+                { "text": "Yoshi!" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+        {
+            "id": 89,
+            "text": "Que dit Mario lorsqu'il est content ?",
+            "reponses": [
+                { "text": "Mamma mia!" },
+                { "text": "Let's-a go!" },
+                { "text": "Yahoo!" },
+                { "text": "It's-a me, Mario!" },
+            ],
+            "ultimate": false,
+            "reponseId": 2
+        },
+
         // Special 80's
         // Special 80's
         // Special 80's
