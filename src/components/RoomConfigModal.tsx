@@ -59,12 +59,12 @@ export default function RoomConfigModal({ openner, serie, onValidate}: RoomConfi
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>
-                <Box textAlign="center"><u>Quizz Config</u></Box>
+                <Box textAlign="center"><u>Quiz Config</u></Box>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
                 <Box><b>Title:</b> {serie.title}</Box>
-                <Box><b>Difficulty:</b> {serie.difficulty}</Box>
+                {/* <Box><b>Difficulty:</b> {serie.difficulty}</Box> */}
                 <Box><b>Questions:</b> {serie.questionId.length}</Box>
                 <hr style={{margin: "20px 0"}} />
                 <FormControl>

@@ -60,7 +60,6 @@ const getEquals = (players) => {
   console.log("scores", scores)
 
   let sorted_scores_keys = Object.keys(scores).sort((a, b) => b - a)
-  console.log(sorted_scores_keys)
   let sorted_scores = []
 
   for (let i = 0; i < sorted_scores_keys.length; i++) {
@@ -83,7 +82,7 @@ const getEquals = (players) => {
     }
   })
 
-  console.log(equals)
+  console.log("equals", equals)
   return equals
 }
 
