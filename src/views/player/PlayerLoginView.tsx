@@ -65,7 +65,7 @@ export default function PlayerLoginView({
                 fontWeight="bolder"
                 textShadow="2px 2px 5px black"
                 mb="1rem"
-                >Choisit ton pseudo</Text>
+                >Choisis ton pseudo</Text>
 
             <Input
                 autoFocus={true}
